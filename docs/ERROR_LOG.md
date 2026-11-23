@@ -41,3 +41,15 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: `package-lock.json`.
 - Cómo evitarlo en el futuro: Gestionar la incorporación del lockfile mediante el flujo autorizado de la organización.
 - Estado: Pendiente
+
+### ERR-004 — Creación de módulos de datos restringida
+- Fecha / Prompt o fase: 2026-11-23 / Tipos y datos mock.
+- Síntoma (mensaje exacto o descripción):
+  - `Access denied: "/workspaces/Clonando-la-interfaz-de-Airbnb-con-Next.js-y-React-dochoadi/data/categories.ts" is excluded by organization content policy. Do not attempt to access this file.`
+  - `Access denied: "/workspaces/Clonando-la-interfaz-de-Airbnb-con-Next.js-y-React-dochoadi/data/listings.ts" is excluded by organization content policy. Do not attempt to access this file.`
+  - `Access denied: "/workspaces/Clonando-la-interfaz-de-Airbnb-con-Next.js-y-React-dochoadi/data/rooms.ts" is excluded by organization content policy. Do not attempt to access this file.`
+- Causa raíz: La política de exclusión de contenido de la organización bloqueó las rutas en el editor.
+- Solución aplicada (comandos/cambios): Se separaron los cambios permitidos. Los módulos restringidos quedan pendientes de autorización.
+- Archivos afectados: `data/categories.ts`, `data/listings.ts`, `data/rooms.ts`.
+- Cómo evitarlo en el futuro: Gestionar el acceso a las rutas mediante el flujo autorizado de la organización.
+- Estado: Pendiente

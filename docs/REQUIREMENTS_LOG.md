@@ -169,9 +169,9 @@
  - [ ] E11 Sin componentes de clase; todos funcionales con const
    - Evidencia:
    - Estado/fecha:
- - [ ] E12 Tipos/interfaces TS para estructuras principales (alojamiento, habitación)
-   - Evidencia:
-   - Estado/fecha:
+ - [x] E12 Tipos/interfaces TS para estructuras principales (alojamiento, habitación)
+   - Evidencia: [types/listing.ts](../types/listing.ts) exporta `Listing`, `Room` (extiende `Listing`), `Host` y `Category`.
+   - Estado/fecha: Completado — 2026-11-23.
  - [ ] E13 Clases de utilidad Tailwind para todos los estilos, sin style={{}} en línea
    - Evidencia:
    - Estado/fecha:
