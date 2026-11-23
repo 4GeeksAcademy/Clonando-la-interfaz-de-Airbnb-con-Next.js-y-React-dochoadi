@@ -16,9 +16,10 @@ const formatPrice = new Intl.NumberFormat("es-ES", {
 const priceIcon = (price: string) => {
   const label = document.createElement("span");
   label.textContent = price;
+  label.className = "flex size-full items-center justify-center";
   return divIcon({
     html: label,
-    className: "grid place-items-center rounded-full border border-neutral-200 bg-white text-sm font-bold text-neutral-900 shadow-md",
+    className: "rounded-full border border-neutral-200 bg-white text-sm font-bold text-neutral-900 shadow-md",
     iconSize: [72, 32],
     iconAnchor: [36, 16],
     popupAnchor: [0, -16],

@@ -107,3 +107,39 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: Ninguno; prueba local en Chromium.
 - Cómo evitarlo en el futuro: Esperar la URL y un elemento exclusivo de la vista destino.
 - Estado: Resuelto; Chromium confirmó la navegación y los controles de la ficha.
+
+### ERR-011 — Chromium de Playwright sin librerías del sistema
+- Fecha / Prompt o fase: 2026-11-23 / Fase 1, verificación visual (Claude Code).
+- Síntoma (mensaje exacto o descripción): `npx playwright install chromium` descargó el navegador, pero terminó con `Host system is missing dependencies to run browsers` y propuso `sudo apt-get install libatk1.0-0t64 libatk-bridge2.0-0t64 libcups2t64 libxkbcommon0 libatspi2.0-0t64 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2t64`.
+- Causa raíz: La imagen del Codespace no incluye las bibliotecas compartidas que necesita Chromium.
+- Solución aplicada (comandos/cambios): Instalar Playwright 1.56.1 en un directorio temporal fuera del repositorio (`npm i playwright@1.56.1`) y ejecutar `sudo -n npx playwright install-deps chromium` (código 0). No se tocaron las dependencias del proyecto.
+- Archivos afectados: Ninguno del repositorio.
+- Cómo evitarlo en el futuro: Ejecutar `npx playwright install --with-deps chromium` desde el principio en entornos nuevos.
+- Estado: Resuelto.
+
+### ERR-012 — Selector ambiguo de la galería en la prueba Playwright
+- Fecha / Prompt o fase: 2026-11-23 / Fase 1, verificación visual (Claude Code).
+- Síntoma (mensaje exacto o descripción): `locator.click: Error: strict mode violation: getByRole('button', { name: 'Anterior' }) resolved to 2 elements` (y lo mismo con `Siguiente`).
+- Causa raíz: Playwright compara el nombre accesible por subcadena sin distinguir mayúsculas; «Anterior» coincidía también con «Mes anterior» del calendario de `react-day-picker`. No es un fallo de la aplicación: los nombres accesibles son distintos.
+- Solución aplicada (comandos/cambios): Usar `{ name: "Anterior", exact: true }` y `{ name: "Siguiente", exact: true }` en el script de verificación.
+- Archivos afectados: Ninguno del repositorio; script temporal de Playwright.
+- Cómo evitarlo en el futuro: Usar `exact: true` en los selectores por rol cuando haya otros controles con nombres parecidos.
+- Estado: Resuelto.
+
+### ERR-013 — Precio descentrado en los pines del mapa
+- Fecha / Prompt o fase: 2026-11-23 / Fase 1, verificación visual (Claude Code).
+- Síntoma (mensaje exacto o descripción): Bug visual en `impl-catalog-375.png` e `impl-catalog-1280.png`: el texto del precio queda arriba a la izquierda de la pastilla blanca de 72 × 32 px en lugar de centrado; con pines cercanos parece cortado («60 ‹»).
+- Causa raíz: `leaflet/dist/leaflet.css` declara `.leaflet-marker-icon { display: block; }` sin capa CSS. Tailwind v4 genera `grid`/`place-items-center` dentro de `@layer utilities`, y las reglas sin capa prevalecen sobre las que van en capas, así que el contenedor nunca fue `grid`.
+- Solución aplicada (comandos/cambios): Centrar el contenido en el `span` interno (`flex size-full items-center justify-center`), sobre el que Leaflet no aplica reglas, y quitar `grid place-items-center` del contenedor del icono.
+- Archivos afectados: `components/ListingsMap.tsx`.
+- Cómo evitarlo en el futuro: No aplicar utilidades de `display` a elementos que también estila Leaflet; aplicar el layout en un hijo propio.
+- Estado: Resuelto; capturas regeneradas.
+
+### ERR-014 — Placeholder del buscador cortado a 375 px en Catálogo y Detalle
+- Fecha / Prompt o fase: 2026-11-23 / Fase 1, verificación visual (Claude Code).
+- Síntoma (mensaje exacto o descripción): Bug visual en `impl-catalog-375.png` e `impl-rooms-1-375.png`: el campo muestra «Empieza a» porque el botón de texto «Buscar» ocupa el ancho disponible.
+- Causa raíz: En la variante con formulario de `Navbar`, marca + campo + botón de texto + menú no caben en 343 px útiles.
+- Solución aplicada (comandos/cambios): Primer intento: sustituir el texto por una flecha en móvil; el placeholder seguía cortándose («Empieza a bu»). Solución final: ocultar el botón por debajo de `md:` (`hidden md:block`). El formulario tiene un solo campo, así que se envía con Intro o con la tecla «Ir» del teclado móvil; desde `md:` el botón «Buscar» sigue visible.
+- Archivos afectados: `components/Navbar.tsx`.
+- Cómo evitarlo en el futuro: Revisar los textos de los campos en la captura de 375 px antes de dar una vista por terminada.
+- Estado: Resuelto; capturas regeneradas.

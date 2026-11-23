@@ -26,7 +26,7 @@ export const Navbar = (props: NavbarProps) => (
         {"catalogQuery" in props ? (
           <form action="/catalog" className="flex min-w-0 flex-1 items-center gap-2 md:max-w-lg">
             <SearchBar defaultValue={props.catalogQuery} />
-            <button type="submit" className="min-h-11 rounded-full px-2 text-sm font-semibold hover:bg-neutral-100">
+            <button type="submit" className="hidden min-h-11 shrink-0 rounded-full px-2 text-sm font-semibold hover:bg-neutral-100 md:block">
               Buscar
             </button>
           </form>

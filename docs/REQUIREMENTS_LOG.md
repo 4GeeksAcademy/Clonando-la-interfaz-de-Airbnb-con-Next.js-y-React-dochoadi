@@ -119,17 +119,17 @@
 ### 6 — Navegación
 
  - [x] 6.1 Clic en tarjeta (Home o Catálogo) navega al detalle
-   - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx); Chromium verificó la navegación al detalle desde ambas vistas.
-   - Estado/fecha: Completado — 2026-11-23.
+   - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx) envuelve la tarjeta en `Link` a `/rooms/[id]`. Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px: el clic en la primera tarjeta de la Home abre su ficha; el enlace «Ver alojamiento» del popup del mapa y las tarjetas del Catálogo usan el mismo componente.
+   - Estado/fecha: Completado — verificado en navegador 2026-11-23.
  - [x] 6.2 Usar <Link> de Next.js para toda la navegación entre páginas
-   - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx), [Catálogo](../app/catalog/page.tsx), [ListingCard.tsx](../components/ListingCard.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx), [BackToCatalog.tsx](../components/BackToCatalog.tsx) y [RoomNotFound.tsx](../components/RoomNotFound.tsx) usan `Link` para la navegación interna.
+   - Evidencia: `grep -rn "<a " app components --include=*.tsx` → sin resultados; la navegación usa `Link` en [ListingCard.tsx](../components/ListingCard.tsx), [Navbar.tsx](../components/Navbar.tsx), [BottomNav.tsx](../components/BottomNav.tsx), [HomeContent.tsx](../components/HomeContent.tsx), [catalog/page.tsx](../app/catalog/page.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx), [BackToCatalog.tsx](../components/BackToCatalog.tsx) y [RoomNotFound.tsx](../components/RoomNotFound.tsx). La búsqueda del Catálogo es un `<form action="/catalog">` (envío GET), no un enlace.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 6.3 Botón volver o breadcrumb en el detalle que regrese al Catálogo
-   - Evidencia: [BackToCatalog.tsx](../components/BackToCatalog.tsx) incluye Inicio, Catálogo y «Volver al catálogo»; regreso comprobado en Chromium.
+   - Evidencia: [BackToCatalog.tsx](../components/BackToCatalog.tsx) (migas Inicio / Catálogo y «← Volver al catálogo»). Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px: el clic en «Volver al catálogo» desde `/rooms/[id]` lleva a `/catalog`. `/rooms/999` muestra [RoomNotFound.tsx](../components/RoomNotFound.tsx) con enlace al Catálogo y HTTP 404 ([impl-rooms-999-375.png](./screenshots/impl-rooms-999-375.png)).
+   - Estado/fecha: Completado — verificado en navegador 2026-11-23.
+ - [x] 6.4 IMPORTANTE: nunca <a href="..."> plano para navegación interna
+   - Evidencia: Mismo `grep` de 6.2 sin resultados: no hay `<a>` en el código propio. Los únicos `<a>` del DOM los genera Leaflet (controles de zoom y atribución externa a OpenStreetMap).
    - Estado/fecha: Completado — 2026-11-23.
- - [ ] 6.4 IMPORTANTE: nunca <a href="..."> plano para navegación interna
-   - Evidencia:
-   - Estado/fecha:
 
 ### 7 — Calidad de código
 
@@ -154,12 +154,12 @@
  - [ ] E3 Tres rutas implementadas y navegables: /, /catalog y /rooms/[id]
    - Evidencia: Parcial: [app/page.tsx](../app/page.tsx) implementa `/` (HTTP 200 en desarrollo). [HomeContent.tsx](../components/HomeContent.tsx) y [ListingCard.tsx](../components/ListingCard.tsx) apuntan a las rutas aún pendientes.
    - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
- - [ ] E4 Toda la navegación interna usa <Link>, sin recargas completas
-   - Evidencia:
-   - Estado/fecha:
- - [ ] E5 Diseño mobile-first: 375px correcto antes de aplicar breakpoints de escritorio
-   - Evidencia: Parcial: [Navbar.tsx](../components/Navbar.tsx), [ListingGrid.tsx](../components/ListingGrid.tsx) y [BottomNav.tsx](../components/BottomNav.tsx) definen estilos base de móvil. No se ha validado visualmente a 375 px.
-   - Estado/fecha: Parcial — 2026-11-23; faltan la comprobación visual y las demás vistas.
+ - [x] E4 Toda la navegación interna usa <Link>, sin recargas completas
+   - Evidencia: Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px. Recorrido Home → detalle (clic en tarjeta) → Catálogo («Volver al catálogo») con `window.__spaMarker` fijado al principio: el marcador persiste tras las dos navegaciones y Playwright no registró ninguna petición de documento nuevo (0), es decir, no hubo recarga completa.
+   - Estado/fecha: Completado — verificado en navegador 2026-11-23.
+ - [x] E5 Diseño mobile-first: 375px correcto antes de aplicar breakpoints de escritorio
+   - Evidencia: Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px. Sin scroll horizontal (`scrollWidth` = `clientWidth`) en `/`, `/catalog`, `/rooms/1` y `/rooms/999` a 375 y 1280 px. Capturas: [impl-home-375.png](./screenshots/impl-home-375.png), [impl-home-1280.png](./screenshots/impl-home-1280.png), [impl-catalog-375.png](./screenshots/impl-catalog-375.png), [impl-catalog-1280.png](./screenshots/impl-catalog-1280.png), [impl-rooms-1-375.png](./screenshots/impl-rooms-1-375.png), [impl-rooms-1-1280.png](./screenshots/impl-rooms-1-1280.png), [impl-rooms-999-375.png](./screenshots/impl-rooms-999-375.png) e [impl-rooms-999-1280.png](./screenshots/impl-rooms-999-1280.png). Las clases base son de móvil y `md:` adapta a escritorio (por ejemplo, [ListingGrid.tsx](../components/ListingGrid.tsx) y [CatalogContent.tsx](../components/CatalogContent.tsx)). Bugs visuales corregidos durante la prueba: ERR-013 (pines) y ERR-014 (buscador a 375 px).
+   - Estado/fecha: Completado — verificado en navegador 2026-11-23.
  - [x] E6 Componente de tarjeta reutilizado en Home y Catálogo
    - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) y [CatalogContent.tsx](../components/CatalogContent.tsx) usan [ListingGrid.tsx](../components/ListingGrid.tsx), que renderiza el mismo [ListingCard.tsx](../components/ListingCard.tsx).
    - Estado/fecha: Completado — 2026-11-23.
