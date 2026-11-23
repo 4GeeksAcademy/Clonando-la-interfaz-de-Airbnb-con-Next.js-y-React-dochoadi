@@ -26,7 +26,7 @@ La ficha muestra una galería con botones «Anterior» y «Siguiente»; una cabe
 
 ## 3. Componentes principales por vista
 
-Inventario inicial basado en los requisitos. Las especificaciones de [Home](#home) y [Catálogo](#catálogo--especificación-de-visión) lo contrastan con las capturas de Airbnb; Detalle queda pendiente de revisión visual.
+Inventario inicial basado en los requisitos. Las especificaciones de [Home](#home), [Catálogo](#catálogo--especificación-de-visión) y [Detalle](#detalle--especificación-de-visión) lo contrastan con las capturas de Airbnb.
 
 ### Home
 
@@ -247,4 +247,33 @@ CatalogContent
 - **4.3 — Base:** `ListingMap` renderiza un placeholder gris con «Mapa» debajo de la lista en móvil y a la derecha en escritorio. El enlace flotante lleva a la misma área en las dos modalidades de mapa.
 - **4.4 — Reto:** sustituir el contenido del placeholder por `react-leaflet`/Leaflet, con un pin por resultado visible en `coordinates.lat` y `coordinates.lng`. Usar un encuadre inicial que abarque los pines y mantener la lista como alternativa navegable. Si no hay resultados, mostrar el mapa sin pines; un fallo del proveedor de teselas no debe ocultar las tarjetas.
 
-### Detalle — pendiente (se rellenará con los prompts de visión)
+### Detalle — especificación de visión
+
+Procedencia: especificación generada por un modelo con visión (Claude) a partir de las capturas docs/screenshots/room-1.jpg a room-4.jpg (vista de detalle de Airbnb en móvil, ~606px), porque el chat de Copilot de este Codespace no permite adjuntar imágenes. Prompt usado: «Analiza estas capturas de detalle de alojamiento y genera una especificación de componentes: nombre, props y relación de layout»
+
+### Observado en las capturas (de arriba abajo)
+1. Barra superior fija: flecha atrás (izquierda), compartir y corazón (derecha).
+2. Galería a ancho completo con contador "1 / 66" abajo a la derecha (en Airbnb se desliza).
+3. Hoja blanca con esquinas superiores redondeadas solapando la foto: título centrado "Apartamentos de Ignacio 1", subtítulo "Apartamento en Alicante, España · 4 apartamentos", fila "★ 4,76 · 916 evaluaciones".
+4. Fila del anfitrión entre separadores: avatar circular con insignia, "Anfitrión: Ignacio", "Superanfitrión · 10 años de experiencia".
+5. Lista de destacados (icono + título en negrita + descripción gris): "Ubicación fantástica", "Superanfitrión", "Cancelación gratuita…".
+6. Sección "Elige tu apartamento": tarjeta con miniatura, nombre, capacidades y precio; botón gris "Mostrar los 4 apartamentos".
+7. Aviso de traducción automática y sección "Información sobre este alojamiento" (texto).
+8. Comodidades: botón gris "Mostrar las 6 comodidades".
+9. "¿Dónde me voy a quedar?": ubicación en texto + mapa con pin de casa y botón de expandir.
+10. Barra inferior fija de reserva: "Desde ~184 €~ 120 € en total", fechas "2–4 dic", insignia "Cancelación gratuita" y botón rosa "Elige un apartamento".
+Estilo: márgenes de 16–24px, texto #222, secundario #6b6b6b, separadores #ddd, botón principal rosa/rojo (#e61e4d), botones secundarios gris claro con radio grande.
+
+### Especificación de componentes (adaptada al enunciado)
+| Componente | Responsabilidad única | Props (TS) | Estado/efectos | Layout |
+|---|---|---|---|---|
+| RoomDetail | Orquestar carga y composición | `{ id: string }` | `room: Room \| null`, `loading`; useEffect [id] + setTimeout 1000 ms → getRoomById; cleanup clearTimeout | Contenedor; md:grid-cols-[1fr_380px] gap-8 |
+| BackToCatalog | Breadcrumb Inicio / Catálogo / título y botón "← Volver al catálogo" | `{ title: string }` | — | Arriba, antes de la galería; Link a "/" y "/catalog" |
+| PhotoGallery | Mostrar la foto actual y navegar | `{ photos: string[]; variant?: Listing['propertyType'] }` | `index: number` (useState); botones Anterior/Siguiente cíclicos | Ancho completo, aspect-[4/3] md:aspect-[16/9], botones circulares laterales, contador "N / total" abajo a la derecha |
+| RoomHeader | Título, estrellas, reseñas, ubicación | `{ title: string; rating: number; reviewCount: number; location: string }` | — | Debajo de la galería, texto centrado en móvil, a la izquierda en md |
+| HostInfo | Avatar, nombre y años como anfitrión | `{ host: Host }` | — | Fila flex entre separadores |
+| AmenitiesGrid | Cuadrícula de servicios | `{ amenities: Room['amenities'] }` | — | grid-cols-2 md:grid-cols-3 gap-4 con AmenityItem |
+| AmenityItem | Un par icono + etiqueta | `{ icon: string; label: string }` | — | Fila flex |
+| GuestCounter | Contador de huéspedes | `{ value: number; min: number; max: number; onChange: (n: number) => void }` | sin estado propio (vive en BookingCard) | Fila: etiqueta + botones −/+ (deshabilitados en límites) |
+| DateRangePicker | Elegir entrada/salida (reto) | `{ range: DateRange \| undefined; onChange }` | — | Dentro de BookingCard; react-day-picker v9 mode="range", locale es |
+| BookingCard | Reserva: precio/noche, fechas, huéspedes, total, CTA | `{ pricePerNight: number; minGuests: number; maxGuests: number }` | `guests` (useState), `range` (useState) | Móvil: bloque tras el contenido; md: sticky top-24 en columna derecha. Opcional: barra fija inferior en móvil con precio + botón que desplaza a la tarjeta |

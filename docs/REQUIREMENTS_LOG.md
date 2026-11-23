@@ -37,17 +37,20 @@
  - [ ] 2.1 Captura de cada una de las 3 páginas de Airbnb en viewport móvil 375px
    - Evidencia de Home: [home-1.jpg](./screenshots/home-1.jpg), [home-2.jpg](./screenshots/home-2.jpg) y [home-3.jpg](./screenshots/home-3.jpg).
    - [x] Catálogo — referencias móviles aportadas: [catalog-1.jpg](./screenshots/catalog-1.jpg) y [catalog-2.jpg](./screenshots/catalog-2.jpg), dos tramos de la misma página a ~606 px.
-   - Estado/fecha: Parcial — 2026-11-23. Home y Catálogo cuentan con referencias a ~606 px; falta verificar el viewport de 375 px y registrar la evidencia de Detalle.
+   - [x] Detalle — [room-1.jpg](./screenshots/room-1.jpg), [room-2.jpg](./screenshots/room-2.jpg), [room-3.jpg](./screenshots/room-3.jpg) y [room-4.jpg](./screenshots/room-4.jpg), referencias móviles a ~606 px analizadas con Claude.
+   - Estado/fecha: Parcial — 2026-11-23. Las tres vistas tienen referencias a ~606 px; falta evidencia a 375 px.
    - [x] Home: tres tramos de scroll recibidos como referencia visual.
- - [ ] 2.2 Adjuntar cada captura al agente y pedir especificación de componentes (nombre, props, relación de layout)
+ - [x] 2.2 Adjuntar cada captura al agente y pedir especificación de componentes (nombre, props, relación de layout)
    - Evidencia de Home: capturas y prompt literal en [context.md → Home](../context.md#home).
    - [x] Catálogo — ambas capturas revisadas; referencias y prompt literal en [context.md → Catálogo](../context.md#catálogo--especificación-de-visión).
-   - Estado/fecha: Parcial — 2026-11-23. Home y Catálogo revisados; Detalle pendiente.
+   - [x] Detalle — [capturas y prompt](../context.md#detalle--especificación-de-visión) analizados con Claude porque el chat de Copilot de este Codespace no permite adjuntar imágenes.
+   - Estado/fecha: Completado — 2026-11-23.
    - [x] Home: prompt de visión y capturas revisados.
- - [ ] 2.3 Documentar cada especificación como comentario en el código o en context.md ANTES de implementar esa vista
+ - [x] 2.3 Documentar cada especificación como comentario en el código o en context.md ANTES de implementar esa vista
    - Evidencia de Home: especificación completa en [context.md → Home](../context.md#home).
    - [x] Catálogo — especificación completa previa a la implementación en [context.md → Catálogo](../context.md#catálogo--especificación-de-visión).
-   - Estado/fecha: Parcial — 2026-11-23. Home y Catálogo documentados antes de implementar sus vistas; Detalle pendiente.
+   - [x] Detalle — [especificación de Claude](../context.md#detalle--especificación-de-visión) documentada antes de implementar la ficha completa; ya existía una galería provisional.
+   - Estado/fecha: Completado — 2026-11-23.
    - [x] Home: componentes, props, estado, layout y adaptación responsive documentados.
  - [ ] 2.4 IMPORTANTE: ninguna librería de componentes preconstruida (ni shadcn, MUI, Ant Design, Chakra)
    - Evidencia:
@@ -181,7 +184,7 @@
  - [ ] E13 Clases de utilidad Tailwind para todos los estilos, sin style={{}} en línea
    - Evidencia:
    - Estado/fecha:
- - [ ] E14 Flujo visión→especificación visible: especificaciones documentadas en context.md o en comentarios del código
-   - Evidencia:
-   - Estado/fecha:
+ - [x] E14 Flujo visión→especificación visible: especificaciones documentadas en context.md o en comentarios del código
+   - Evidencia: [sección 6 de context.md](../context.md#6-especificaciones-derivadas-de-visión). Detalle conserva la especificación, las capturas de referencia y el prompt de Claude, usado porque el chat de Copilot de este Codespace no permite adjuntar imágenes.
+   - Estado/fecha: Completado — 2026-11-23.
  - Nota: los retos opcionales (mapa real, date picker funcional) no son evaluación base, pero en ESTE proyecto SÍ los vamos a hacer (4.4 y 5.7).
