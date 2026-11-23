@@ -143,3 +143,12 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: `components/Navbar.tsx`.
 - Cómo evitarlo en el futuro: Revisar los textos de los campos en la captura de 375 px antes de dar una vista por terminada.
 - Estado: Resuelto; capturas regeneradas.
+
+### ERR-015 — El banner de cookies de Airbnb tapaba el clic en la tarjeta
+- Fecha / Prompt o fase: 2026-11-23 / Capturas de Airbnb a 375 px (Claude Code).
+- Síntoma (mensaje exacto o descripción): `TimeoutError: locator.click` … `<div data-testid="main-cookies-banner-container">…</div> subtree intercepts pointer events` al pulsar la primera tarjeta de `/s/Alicante--España/homes`.
+- Causa raíz: El script de captura buscaba «Solo necesarias», pero el botón del banner se llama «Solo las necesarias», así que el banner seguía abierto. Además, la imagen del carrusel de la tarjeta intercepta el puntero.
+- Solución aplicada (comandos/cambios): Añadir «Solo las necesarias» y «Aceptar todas» a los botones que se cierran y, si el clic normal no llega, repetirlo con `force: true` sobre el mismo enlace. Airbnb no bloqueó el acceso: home, búsqueda y detalle respondieron HTTP 200.
+- Archivos afectados: Ninguno del repositorio; script temporal de Playwright.
+- Cómo evitarlo en el futuro: Sacar el nombre accesible real de los botones del banner (con el mensaje de error o `getByRole`) antes de automatizar el cierre.
+- Estado: Resuelto.

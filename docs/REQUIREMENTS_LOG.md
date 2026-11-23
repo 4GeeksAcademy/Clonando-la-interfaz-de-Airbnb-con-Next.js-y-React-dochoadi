@@ -34,12 +34,13 @@
 
 ### 2 — Flujo de trabajo con prompts de visión
 
- - [ ] 2.1 Captura de cada una de las 3 páginas de Airbnb en viewport móvil 375px
-   - Evidencia de Home: [home-1.jpg](./screenshots/home-1.jpg), [home-2.jpg](./screenshots/home-2.jpg) y [home-3.jpg](./screenshots/home-3.jpg).
-   - [x] Catálogo — referencias móviles aportadas: [catalog-1.jpg](./screenshots/catalog-1.jpg) y [catalog-2.jpg](./screenshots/catalog-2.jpg), dos tramos de la misma página a ~606 px.
-   - [x] Detalle — [room-1.jpg](./screenshots/room-1.jpg), [room-2.jpg](./screenshots/room-2.jpg), [room-3.jpg](./screenshots/room-3.jpg) y [room-4.jpg](./screenshots/room-4.jpg), referencias móviles a ~606 px analizadas con Claude.
-   - Estado/fecha: **Pendiente de verificación manual** — 2026-11-23. Las tres vistas tienen referencias de Airbnb a ~606 px aportadas por el usuario, pero no hay capturas de Airbnb a 375 px: hay que hacerlas a mano (DevTools → modo dispositivo a 375 px). El agente no las generó porque son capturas del sitio real de un tercero. Las capturas del clon a 375 px sí existen (`docs/screenshots/impl-*-375.png`).
-   - [x] Home: tres tramos de scroll recibidos como referencia visual.
+ - [x] 2.1 Captura de cada una de las 3 páginas de Airbnb en viewport móvil 375px
+   - Evidencia: capturas reales de airbnb.es a 375 × 812 CSS px (Playwright/Chromium, perfil iPhone X con UA móvil, `innerWidth = 375`, sin scroll horizontal):
+     - Home: [airbnb-home-375.png](./screenshots/airbnb-home-375.png), [airbnb-home-375-2.png](./screenshots/airbnb-home-375-2.png) y [airbnb-home-375-3.png](./screenshots/airbnb-home-375-3.png).
+     - Catálogo (`/s/Alicante--España/homes`): [airbnb-catalog-375.png](./screenshots/airbnb-catalog-375.png), [airbnb-catalog-375-2.png](./screenshots/airbnb-catalog-375-2.png) y [airbnb-catalog-375-3.png](./screenshots/airbnb-catalog-375-3.png).
+     - Detalle (clic en la primera tarjeta): [airbnb-room-375.png](./screenshots/airbnb-room-375.png), [airbnb-room-375-2.png](./screenshots/airbnb-room-375-2.png), [airbnb-room-375-3.png](./screenshots/airbnb-room-375-3.png) y [airbnb-room-375-4.png](./screenshots/airbnb-room-375-4.png).
+     - Diferencias con las especificaciones en [context.md → Contraste con Airbnb real a 375 px](../context.md#contraste-con-airbnb-real-a-375-px). Las referencias previas a ~606 px (home-1…3, catalog-1…2, room-1…4) se conservan.
+   - Estado/fecha: Completado — 2026-11-23.
  - [x] 2.2 Adjuntar cada captura al agente y pedir especificación de componentes (nombre, props, relación de layout)
    - Evidencia de Home: capturas y prompt literal en [context.md → Home](../context.md#home).
    - [x] Catálogo — ambas capturas revisadas; referencias y prompt literal en [context.md → Catálogo](../context.md#catálogo--especificación-de-visión).
@@ -197,7 +198,7 @@ Comandos: `npm run lint` sin errores ni avisos; `npm run build` compila `/`, `/c
 | --- | --- | --- |
 | 0 — context.md | Completado | [context.md](../context.md) |
 | 1 — Configuración | Completado | [package.json](../package.json), [app/](../app/) |
-| 2 — Flujo de visión | Completado salvo 2.1 | [context.md §6](../context.md#6-especificaciones-derivadas-de-visión); 2.1 pendiente (capturas de Airbnb a 375 px) |
+| 2 — Flujo de visión | Completado | [context.md §6](../context.md#6-especificaciones-derivadas-de-visión) y capturas reales de Airbnb a 375 px (`docs/screenshots/airbnb-*-375*.png`) |
 | 3 — Home | Completado | [HomeContent.tsx](../components/HomeContent.tsx), [impl-home-375.png](./screenshots/impl-home-375.png), [impl-home-1280.png](./screenshots/impl-home-1280.png) |
 | 4 — Catálogo (+ reto 4.4) | Completado | [CatalogContent.tsx](../components/CatalogContent.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx), [impl-catalog-375.png](./screenshots/impl-catalog-375.png), [impl-catalog-1280.png](./screenshots/impl-catalog-1280.png) |
 | 5 — Detalle (+ reto 5.7) | Completado | [RoomDetail.tsx](../components/RoomDetail.tsx), [BookingCard.tsx](../components/BookingCard.tsx), [impl-rooms-1-375.png](./screenshots/impl-rooms-1-375.png), [impl-rooms-999-375.png](./screenshots/impl-rooms-999-375.png) |
@@ -207,7 +208,6 @@ Comandos: `npm run lint` sin errores ni avisos; `npm run build` compila `/`, `/c
 
 ### Pendiente de verificación manual
 
-- **2.1** — Capturas de Airbnb a 375 px: solo hay referencias a ~606 px. Hacerlas en DevTools (modo dispositivo, 375 px) y guardarlas en `docs/screenshots/`.
 - **Teselas reales del mapa** — en la prueba automática se simularon las teselas de OpenStreetMap para no depender de la red; conviene abrir `/catalog` en un navegador con conexión y confirmar que se ve el mapa base.
 - **Dispositivo físico** — la verificación se hizo en Chromium con viewport de 375 px, no en un móvil real (Safari iOS: área segura, teclado virtual sobre el buscador).
 

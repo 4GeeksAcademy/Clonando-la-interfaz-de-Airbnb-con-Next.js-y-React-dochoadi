@@ -277,3 +277,51 @@ Estilo: márgenes de 16–24px, texto #222, secundario #6b6b6b, separadores #ddd
 | GuestCounter | Contador de huéspedes | `{ value: number; min: number; max: number; onChange: (n: number) => void }` | sin estado propio (vive en BookingCard) | Fila: etiqueta + botones −/+ (deshabilitados en límites) |
 | DateRangePicker | Elegir entrada/salida (reto) | `{ range: DateRange \| undefined; onChange }` | — | Dentro de BookingCard; react-day-picker v9 mode="range", locale es |
 | BookingCard | Reserva: precio/noche, fechas, huéspedes, total, CTA | `{ pricePerNight: number; minGuests: number; maxGuests: number }` | `guests` (useState), `range` (useState) | Móvil: bloque tras el contenido; md: sticky top-24 en columna derecha. Opcional: barra fija inferior en móvil con precio + botón que desplaza a la tarjeta |
+
+### Contraste con Airbnb real a 375 px
+
+**Capturas:** tomadas el 2026-11-23 con Playwright (Chromium), perfil iPhone X (viewport 375 × 812 CSS px, DPR 3, UA de Safari iOS), `es-ES`, con el banner de cookies cerrado con «Solo las necesarias». En las tres páginas, `innerWidth = 375` y no hay scroll horizontal. Son tramos consecutivos de scroll de 812 px de alto.
+
+- Home: [airbnb-home-375.png](./docs/screenshots/airbnb-home-375.png), [-2](./docs/screenshots/airbnb-home-375-2.png), [-3](./docs/screenshots/airbnb-home-375-3.png)
+- Búsqueda (`/s/Alicante--España/homes`): [airbnb-catalog-375.png](./docs/screenshots/airbnb-catalog-375.png), [-2](./docs/screenshots/airbnb-catalog-375-2.png), [-3](./docs/screenshots/airbnb-catalog-375-3.png)
+- Detalle (primera tarjeta: «Apartamentos de Ignacio 1», el mismo alojamiento de room-1…4): [airbnb-room-375.png](./docs/screenshots/airbnb-room-375.png), [-2](./docs/screenshots/airbnb-room-375-2.png), [-3](./docs/screenshots/airbnb-room-375-3.png), [-4](./docs/screenshots/airbnb-room-375-4.png)
+
+#### Home — coincide con la spec
+
+- Cabecera con la pastilla «Empieza a buscar» (~54 px de alto) y pastillas de categoría con icono. La cabecera y las categorías quedan **sticky** al hacer scroll. No hay logo ni icono de usuario arriba.
+- Carrusel «Descubre experiencias cerca de ti» y luego carruseles de alojamientos por ciudad con título y flecha circular gris.
+- Tarjeta: foto redondeada, corazón, distintivo «Recomendación del viajero», título, fechas · tipo de anfitrión y precio **total** · ★ nota.
+- Barra inferior fija: Explorar (activo, rosa), Favoritos e Iniciar sesión.
+- Margen lateral de 24 px y 12 px entre tarjetas, como recoge la spec.
+
+**Diferencias a 375 px:**
+- Solo caben 2,5 pastillas de categoría: «Experiencias» queda cortada y «Servicios» fuera de pantalla. El scroll horizontal es imprescindible.
+- Las tarjetas de los carruseles miden ~158 px: caben 2 y asoma la tercera. El distintivo «Recomendación del viajero» se parte a mitad de palabra («Recomendaci / ón del viajero») y los títulos ocupan 2 líneas.
+- Los títulos de sección largos ocupan 2 líneas («Disponibles en Mánchester este fin de semana»).
+- Las ciudades de los carruseles dependen de la ubicación detectada (Mánchester, Edimburgo, Málaga, Budapest, Madrid…), no son las de las referencias (Alicante, Granada, Oporto).
+- Impacto en el clon: ninguno. Usa cuadrícula de 1 columna a 375 px, sus categorías ya tienen scroll horizontal y su distintivo no se parte.
+
+#### Catálogo — coincide con la spec
+
+- Cabecera con flecha atrás, pastilla «Alojamientos en Alicante» con subtítulo «Cualquier fecha · Añade viajeros» e icono de filtros.
+- Mapa arriba con pines de precio blancos, hoja blanca superpuesta con tirador, «Más de 1.000 alojamientos» y «Cómo ordenamos los resultados» (que no es un selector de orden).
+- Botón flotante oscuro «Mapa» con icono, por encima de la barra inferior (Explorar activo).
+
+**Diferencias a 375 px:**
+- **Lista en 1 columna, no en 2.** La spec dice «tarjetas en 2 columnas» y «a 375 px quedan ~165 px por tarjeta», pero a 375 px Airbnb muestra tarjetas a ancho completo. El clon ya usa 1 columna en móvil (`ListingGrid` con `grid-cols-1`, `lg:grid-cols-2`), así que coincide con Airbnb. La spec se escribió a ~606 px.
+- El mapa ocupa ~340 px antes de la hoja (la spec dice ~250 px a 606 px). El clon lo pone debajo de la lista, que es una adaptación deliberada (4.3).
+- El subtítulo de la pastilla se trunca («Cualquier fe… · Añade viaje…»).
+- Cada tarjeta es un **panel blanco redondeado con sombra** que contiene la foto (indicadores de galería, «Superanfitrión» en pastilla oscura o «Recomendación del viajero» en pastilla clara, corazón). Debajo van el título y, en la misma fila, la valoración con número de reseñas («★ 4,79 (76)»), luego descripción, tipo de anfitrión, fechas, precio total con tachado y, a veces, «Cancelación gratuita». La spec pedía «sombra discreta o ninguna» y el clon no pone panel.
+
+#### Detalle — coincide con la spec
+
+- Galería a ancho completo con contador «1 / 66»; hoja blanca redondeada que la solapa con el título centrado, subtítulo, «4 apartamentos» y «★ 4,76 · 916 evaluaciones».
+- Fila del anfitrión con avatar e insignia, destacados («Ubicación fantástica», Superanfitrión, cancelación), «Elige tu apartamento» con «Mostrar los 4 apartamentos» y aviso de traducción automática.
+- Barra inferior fija con «Desde ~~184 €~~ 120 € en total», «2–4 dic», «Cancelación gratuita» y botón rosa a ancho completo «Elige un apartamento».
+
+**Diferencias a 375 px:**
+- Con UA de iOS aparece primero un **banner «Descarga la aplicación / USA LA APLICACIÓN»**, que no estaba en las referencias.
+- Atrás, compartir y corazón son **botones circulares superpuestos a la foto**, no una barra fija separada: desaparecen al hacer scroll (`airbnb-room-375-3.png`).
+- Las comodidades se titulan **«¿Qué hay en este alojamiento?»** y son una **lista de 1 columna** (icono + etiqueta), no una cuadrícula. El clon usa «Comodidades» en una cuadrícula de 2 columnas porque el enunciado pide «cuadrícula de pares icono + etiqueta» (5.5); se mantiene así.
+- En la barra inferior, el botón ocupa todo el ancho **debajo** del precio, no al lado. La página de detalle no tiene barra de navegación inferior.
+- El clon no tiene barra de reserva fija en móvil (en la spec era opcional): la tarjeta de reserva va al final del contenido.
