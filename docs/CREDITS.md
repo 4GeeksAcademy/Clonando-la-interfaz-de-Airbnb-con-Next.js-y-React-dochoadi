@@ -30,5 +30,5 @@ Proceso: se comprobó con `file` que cada descarga era un JPEG válido de más d
 ## Mapa del Catálogo
 
 - **Leaflet** (BSD-2-Clause) y **react-leaflet** (MIT): librerías del mapa interactivo.
-- **Teselas:** [CARTO Voyager](https://carto.com/attributions) sobre datos de [OpenStreetMap](https://www.openstreetmap.org/copyright) (© colaboradores de OpenStreetMap, licencia ODbL). Atribución visible en el control del mapa.
-- Estado (2026-11-23, ERR-019): las teselas devuelven 200, pero CARTO sirve una marca de agua «API KEY REQUIRED» hasta que haya una clave de API o se cambie de proveedor.
+- **Teselas:** Esri World Street Map (servicio `World_Street_Map` de [ArcGIS](https://www.esri.com)) (© Esri y colaboradores, según el atributo que muestra el mapa). Se usa sin clave de API; la atribución es visible en el control del mapa.
+- Historial (ERR-019, 2026-11-23): OSM devolvía 403 y CARTO Voyager sin clave servía una marca de agua «API KEY REQUIRED», por lo que se cambió a Esri.

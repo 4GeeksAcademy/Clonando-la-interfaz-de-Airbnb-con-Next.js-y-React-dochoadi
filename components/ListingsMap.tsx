@@ -35,11 +35,10 @@ const ListingsMap = ({ listings }: { listings: readonly Listing[] }) => (
     className="h-[400px] w-full overflow-hidden rounded-2xl md:h-full"
   >
     <TileLayer
-      url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-      subdomains="abcd"
+      url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
       maxZoom={19}
       attribution={
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        'Tiles &copy; <a href="https://www.esri.com">Esri</a> &mdash; Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), TomTom'
       }
     />
     <FitListingBounds listings={listings} />
