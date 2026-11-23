@@ -71,6 +71,7 @@ Inventario inicial basado en los requisitos. Las especificaciones de [Home](#hom
 - Usar `Link` de `next/link` para toda la navegación interna.
 - Servir los alojamientos y las fichas desde datos mock en `/mocks`, sin depender de un backend.
 - Implementar ambos retos: `react-leaflet` y `leaflet` para el mapa, y `react-day-picker` para las fechas. Son las únicas excepciones al uso de componentes propios.
+- Fotos: archivos locales en /public/photos, licencias en docs/CREDITS.md; si una foto falta, se muestra el placeholder. Son 20 fotos CC0 de Wikimedia Commons ([docs/CREDITS.md](./docs/CREDITS.md)), servidas con `next/image` desde `ListingPhoto`; si no hay ruta o la imagen falla, se usa `PlaceholderPhoto` (gradiente e icono). Al ser rutas estáticas, no hace falta configurar `images.remotePatterns`.
 
 ## 6. Especificaciones derivadas de visión
 
