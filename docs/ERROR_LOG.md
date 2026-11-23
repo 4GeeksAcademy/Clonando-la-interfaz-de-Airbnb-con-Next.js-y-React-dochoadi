@@ -22,7 +22,7 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Solución aplicada (comandos/cambios): Se separaron los cambios permitidos del archivo restringido. La creación del marcador sigue pendiente.
 - Archivos afectados: `data/.gitkeep`.
 - Cómo evitarlo en el futuro: Aplicar los cambios permitidos en un lote separado y gestionar la ruta restringida mediante el flujo autorizado de la organización.
-- Estado: Pendiente
+- Estado: Obsoleto — la ruta de datos pasó a `/mocks` (ERR-005), así que `data/.gitkeep` ya no hace falta. Revisión 2026-11-23 (Claude Code): el bloqueo era de la política de contenido de Copilot y no afecta a este agente (`test -w data` → escribible).
 
 ### ERR-002 — Next.js altera las instrucciones del repositorio
 - Fecha / Prompt o fase: 2026-11-23 / Prueba de arranque de Next.js.
@@ -40,7 +40,7 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Solución aplicada (comandos/cambios): Se prepararon únicamente los archivos permitidos. El diagnóstico posterior confirmó que `git status -sb` muestra `?? package-lock.json`, que `core.excludesfile` no está configurado y que `.gitignore` y `.git/info/exclude` no contienen una regla que explique el bloqueo. No se forzó la inclusión del lockfile.
 - Archivos afectados: `package-lock.json`.
 - Cómo evitarlo en el futuro: Gestionar la incorporación del lockfile mediante el flujo autorizado de la organización.
-- Estado: Pendiente
+- Estado: Resuelto — el lockfile se versionó en `f610617` («chore: package-lock.json y registro de errores»). Revisión 2026-11-23 (Claude Code): `git check-ignore -v package-lock.json` no devuelve regla (código 1), `git ls-files package-lock.json` lo lista y no tiene cambios respecto al commit. El bloqueo era exclusivo de la política de Copilot.
 
 ### ERR-004 — Creación de módulos de datos restringida
 - Fecha / Prompt o fase: 2026-11-23 / Tipos y datos mock.
@@ -52,7 +52,7 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Solución aplicada (comandos/cambios): Se separaron los cambios permitidos. Los módulos restringidos quedan pendientes de autorización.
 - Archivos afectados: `data/categories.ts`, `data/listings.ts`, `data/rooms.ts`.
 - Cómo evitarlo en el futuro: Gestionar el acceso a las rutas mediante el flujo autorizado de la organización.
-- Estado: Pendiente
+- Estado: Obsoleto — los datos viven en `/mocks` (ERR-005). Revisión 2026-11-23 (Claude Code): el bloqueo de `/data` era de la política de Copilot; este agente puede escribir en `data/`, pero no se recrean los módulos para no duplicar los mocks.
 
 ### ERR-005 — Nueva ubicación para los datos ficticios
 - Fecha / Prompt o fase: 2026-11-23 / Datos mock en `/mocks`.
@@ -70,7 +70,7 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Solución aplicada (comandos/cambios): No se reintentó la lectura. El lint, el build y la prueba HTTP de la galería pasaron; la inspección directa del CSS quedó sin realizar.
 - Archivos afectados: Directorio generado `.next/static`.
 - Cómo evitarlo en el futuro: No inspeccionar directamente los directorios de artefactos excluidos.
-- Estado: Pendiente de verificación directa del CSS; no bloquea la compilación.
+- Estado: Resuelto para Claude Code (2026-11-23): `.next/static/chunks/*.css` es legible desde este agente; el bloqueo solo afectaba a Copilot.
 
 ### ERR-007 — Servidor de desarrollo duplicado
 - Fecha / Prompt o fase: 2026-11-23 / Catálogo, fase A.
