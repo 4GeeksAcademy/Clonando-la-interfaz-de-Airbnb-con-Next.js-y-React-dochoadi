@@ -11,7 +11,7 @@
    - Evidencia: [context.md](../context.md), sección 2 «Las tres páginas».
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 0.3 context.md: listado de los componentes principales de cada vista (Airbnb.com como referencia)
-   - Evidencia: [context.md](../context.md), sección 3 «Componentes principales por vista». El inventario inicial queda pendiente de contraste con las capturas.
+   - Evidencia: [context.md](../context.md), sección 3 «Componentes principales por vista». El inventario se contrastó con las capturas de Airbnb: primero con las referencias a ~606 px en las especificaciones de visión de la sección 6 ([Home](../context.md#home), [Catálogo](../context.md#catálogo--especificación-de-visión) y [Detalle](../context.md#detalle--especificación-de-visión)) y después con capturas reales a 375 px en [context.md → Contraste con Airbnb real a 375 px](../context.md#contraste-con-airbnb-real-a-375-px).
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 0.4 context.md: párrafo corto que describa al usuario y qué intenta conseguir en la plataforma
    - Evidencia: [context.md](../context.md), sección 1 «Usuario y objetivo».
