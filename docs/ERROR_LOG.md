@@ -98,3 +98,12 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: Ninguno.
 - Cómo evitarlo en el futuro: Comprobar si hay un navegador de pruebas disponible al planificar la verificación.
 - Estado: Resuelto. Chromium confirmó que el enlace del popup abrió el detalle sin solicitar un documento nuevo. Las teselas se simularon durante la prueba.
+
+### ERR-010 — La prueba esperaba un encabezado que también existe en Home
+- Fecha / Prompt o fase: 2026-11-23 / Detalle, fase 2.
+- Síntoma (mensaje exacto o descripción): `The input did not match the regular expression /\/rooms\/balcon-cabanyal$/. Input:` (valor: `http://localhost:3000/`).
+- Causa raíz: El selector del encabezado coincidía con la tarjeta de origen antes de que se completara la navegación.
+- Solución aplicada (comandos/cambios): Esperar explícitamente la URL y el encabezado de nivel 1 de la ficha.
+- Archivos afectados: Ninguno; prueba local en Chromium.
+- Cómo evitarlo en el futuro: Esperar la URL y un elemento exclusivo de la vista destino.
+- Estado: Resuelto; Chromium confirmó la navegación y los controles de la ficha.

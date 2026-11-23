@@ -94,39 +94,39 @@
 
 ### 5 — Página de detalle (/rooms/[id])
 
- - [ ] 5.1 useEffect para cargar datos de la habitación al montar usando el id de la URL, con setTimeout y estado de carga
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 5.2 Galería de fotos arriba: useState con el índice visible y botones Anterior/Siguiente sobre un array de placeholders
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 5.3 Cabecera: título, valoración con estrellas, número de reseñas y ubicación
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 5.4 Fila del anfitrión: avatar placeholder, nombre y años como anfitrión
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 5.5 Sección de servicios (amenities) como cuadrícula de pares icono + etiqueta
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 5.6 Tarjeta de reserva: precio por noche, contador de huéspedes (useState, rango mín/máx) y botón CTA
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 5.1 useEffect para cargar datos de la habitación al montar usando el id de la URL, con setTimeout y estado de carga
+   - Evidencia: [RoomDetail.tsx](../components/RoomDetail.tsx) simula una carga de 1000 ms con limpieza del temporizador. `/rooms/1` devolvió HTTP 200 con indicador; `/rooms/999` devolvió HTTP 404 con «Alojamiento no encontrado».
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 5.2 Galería de fotos arriba: useState con el índice visible y botones Anterior/Siguiente sobre un array de placeholders
+   - Evidencia: [PhotoGallery.tsx](../components/PhotoGallery.tsx) reutiliza `PlaceholderPhoto`; Chromium comprobó el salto cíclico entre la primera y la quinta foto.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 5.3 Cabecera: título, valoración con estrellas, número de reseñas y ubicación
+   - Evidencia: [RoomHeader.tsx](../components/RoomHeader.tsx) reutiliza [StarRating.tsx](../components/StarRating.tsx) y muestra los datos de la ficha.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 5.4 Fila del anfitrión: avatar placeholder, nombre y años como anfitrión
+   - Evidencia: [HostInfo.tsx](../components/HostInfo.tsx) muestra avatar con iniciales, nombre y experiencia.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 5.5 Sección de servicios (amenities) como cuadrícula de pares icono + etiqueta
+   - Evidencia: [AmenitiesGrid.tsx](../components/AmenitiesGrid.tsx) organiza los pares de [AmenityItem.tsx](../components/AmenityItem.tsx) en dos columnas en móvil y tres en escritorio.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 5.6 Tarjeta de reserva: precio por noche, contador de huéspedes (useState, rango mín/máx) y botón CTA
+   - Evidencia: [BookingCard.tsx](../components/BookingCard.tsx) controla [GuestCounter.tsx](../components/GuestCounter.tsx). Chromium verificó límites de 1 a 6 y el aviso de que no se realizan reservas reales.
+   - Estado/fecha: Completado — 2026-11-23.
  - [ ] 5.7 RETO OPCIONAL: campos funcionales de fecha entrada/salida con librería de date picker y precio total según noches seleccionadas
    - Evidencia:
    - Estado/fecha:
 
 ### 6 — Navegación
 
- - [ ] 6.1 Clic en tarjeta (Home o Catálogo) navega al detalle
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 6.2 Usar <Link> de Next.js para toda la navegación entre páginas
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 6.3 Botón volver o breadcrumb en el detalle que regrese al Catálogo
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 6.1 Clic en tarjeta (Home o Catálogo) navega al detalle
+   - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx); Chromium verificó la navegación al detalle desde ambas vistas.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 6.2 Usar <Link> de Next.js para toda la navegación entre páginas
+   - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx), [Catálogo](../app/catalog/page.tsx), [ListingCard.tsx](../components/ListingCard.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx), [BackToCatalog.tsx](../components/BackToCatalog.tsx) y [RoomNotFound.tsx](../components/RoomNotFound.tsx) usan `Link` para la navegación interna.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 6.3 Botón volver o breadcrumb en el detalle que regrese al Catálogo
+   - Evidencia: [BackToCatalog.tsx](../components/BackToCatalog.tsx) incluye Inicio, Catálogo y «Volver al catálogo»; regreso comprobado en Chromium.
+   - Estado/fecha: Completado — 2026-11-23.
  - [ ] 6.4 IMPORTANTE: nunca <a href="..."> plano para navegación interna
    - Evidencia:
    - Estado/fecha:

@@ -2,7 +2,8 @@ import type { Room } from "@/types/listing";
 import { listings } from "./listings";
 
 export const getRoomById = (id: string): Room | undefined => {
-  const listing = listings.find((item) => item.id === id);
+  const listingId = id === "1" ? "balcon-cabanyal" : id;
+  const listing = listings.find((item) => item.id === listingId);
   if (!listing) return undefined;
 
   return {
