@@ -90,8 +90,9 @@
    - Evidencia: [CatalogContent.tsx](../components/CatalogContent.tsx) coloca el mapa después de la lista en móvil y a la derecha con `sticky` desde `md:`. La respuesta HTTP en dev incluyó [MapPlaceholder.tsx](../components/MapPlaceholder.tsx) con el texto «Mapa».
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 4.4 RETO OPCIONAL: sustituir placeholder por mapa interactivo real (react-leaflet o Google Maps) con cada alojamiento como pin usando sus coordenadas
-   - Evidencia: [MapSection.tsx](../components/MapSection.tsx) carga Leaflet sin SSR. [ListingsMap.tsx](../components/ListingsMap.tsx) muestra pines de precio y teselas de OpenStreetMap con atribución; [FitListingBounds.tsx](../components/FitListingBounds.tsx) encuadra las coordenadas. Chromium verificó 12 pines, un pin al filtrar y la navegación desde el popup sin recargar el documento (teselas simuladas). Fase 1 (2026-11-23): Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones; 12 pines (uno por alojamiento) en `/catalog`. Se corrigió el centrado del precio en el pin (ERR-013). Capturas: [impl-catalog-375.png](./screenshots/impl-catalog-375.png) e [impl-catalog-1280.png](./screenshots/impl-catalog-1280.png). Las teselas OSM se simularon en la prueba.
-   - Estado/fecha: Completado — 2026-11-23.
+   - Evidencia: [MapSection.tsx](../components/MapSection.tsx) carga Leaflet sin SSR. [ListingsMap.tsx](../components/ListingsMap.tsx) muestra pines de precio y teselas de CARTO Voyager (datos de OpenStreetMap) con atribución; [FitListingBounds.tsx](../components/FitListingBounds.tsx) encuadra las coordenadas. Chromium verificó 12 pines, un pin al filtrar y la navegación desde el popup sin recargar el documento (teselas simuladas). Fase 1 (2026-11-23): Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones; 12 pines (uno por alojamiento) en `/catalog`. Se corrigió el centrado del precio en el pin (ERR-013). Capturas: [impl-catalog-375.png](./screenshots/impl-catalog-375.png) e [impl-catalog-1280.png](./screenshots/impl-catalog-1280.png). Las teselas OSM se simularon en la prueba.
+     Corrección 2026-11-23 (ERR-019): OSM devolvía 403; se cambió a CARTO Voyager, con estilos de Leaflet corregidos en [globals.css](../app/globals.css) y capturas [catalog-map-375.png](./screenshots/catalog-map-375.png) y [catalog-map-1280.png](./screenshots/catalog-map-1280.png). Playwright: 24/24 comprobaciones; teselas reales con HTTP 200, pero con la marca de agua «API KEY REQUIRED» de CARTO, pendiente de decisión.
+   - Estado/fecha: Completado con pendiente — 2026-11-23.
 
 ### 5 — Página de detalle (/rooms/[id])
 
@@ -123,13 +124,13 @@
    - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx) envuelve la tarjeta en `Link` a `/rooms/[id]`. Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px: el clic en la primera tarjeta de la Home abre su ficha; el enlace «Ver alojamiento» del popup del mapa y las tarjetas del Catálogo usan el mismo componente.
    - Estado/fecha: Completado — verificado en navegador 2026-11-23.
  - [x] 6.2 Usar <Link> de Next.js para toda la navegación entre páginas
-   - Evidencia: `grep -rn "<a " app components --include=*.tsx` solo encuentra [ListingsMap.tsx:40](../components/ListingsMap.tsx), un string con el enlace **externo** de atribución de OpenStreetMap que exige su licencia y que Leaflet inserta en el control de atribución. No hay `<a>` de navegación interna. Toda la navegación usa `Link`: [ListingCard.tsx](../components/ListingCard.tsx), [Navbar.tsx](../components/Navbar.tsx), [BottomNav.tsx](../components/BottomNav.tsx), [HomeContent.tsx](../components/HomeContent.tsx), [catalog/page.tsx](../app/catalog/page.tsx), [CatalogContent.tsx](../components/CatalogContent.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx) (popup), [BackToCatalog.tsx](../components/BackToCatalog.tsx) y [RoomNotFound.tsx](../components/RoomNotFound.tsx). La búsqueda del Catálogo es un `<form action="/catalog">` GET, no un enlace.
+   - Evidencia: `grep -rn "<a " app components --include=*.tsx` solo encuentra [ListingsMap.tsx:42](../components/ListingsMap.tsx), un string con los enlaces **externos** de atribución de OpenStreetMap y CARTO que exigen sus licencias y que Leaflet inserta en el control de atribución. No hay `<a>` de navegación interna. Toda la navegación usa `Link`: [ListingCard.tsx](../components/ListingCard.tsx), [Navbar.tsx](../components/Navbar.tsx), [BottomNav.tsx](../components/BottomNav.tsx), [HomeContent.tsx](../components/HomeContent.tsx), [catalog/page.tsx](../app/catalog/page.tsx), [CatalogContent.tsx](../components/CatalogContent.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx) (popup), [BackToCatalog.tsx](../components/BackToCatalog.tsx) y [RoomNotFound.tsx](../components/RoomNotFound.tsx). La búsqueda del Catálogo es un `<form action="/catalog">` GET, no un enlace.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 6.3 Botón volver o breadcrumb en el detalle que regrese al Catálogo
    - Evidencia: [BackToCatalog.tsx](../components/BackToCatalog.tsx) (migas Inicio / Catálogo y «← Volver al catálogo»). Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px: el clic en «Volver al catálogo» desde `/rooms/[id]` lleva a `/catalog`. `/rooms/999` muestra [RoomNotFound.tsx](../components/RoomNotFound.tsx) con enlace al Catálogo y HTTP 404 ([impl-rooms-999-375.png](./screenshots/impl-rooms-999-375.png)).
    - Estado/fecha: Completado — verificado en navegador 2026-11-23.
  - [x] 6.4 IMPORTANTE: nunca <a href="..."> plano para navegación interna
-   - Evidencia: Ver 6.2: el único `<a>` del código es la atribución externa de OpenStreetMap ([ListingsMap.tsx:40](../components/ListingsMap.tsx)). Los demás `<a>` del DOM los genera Leaflet (zoom y atribución). Ninguno es navegación interna.
+   - Evidencia: Ver 6.2: el único `<a>` del código es la atribución externa de OpenStreetMap y CARTO ([ListingsMap.tsx:42](../components/ListingsMap.tsx)). Los demás `<a>` del DOM los genera Leaflet (zoom y atribución). Ninguno es navegación interna.
    - Estado/fecha: Completado — 2026-11-23.
 
 ### 7 — Calidad de código
@@ -208,6 +209,6 @@ Comandos: `npm run lint` sin errores ni avisos; `npm run build` compila `/`, `/c
 
 ### Pendiente de verificación manual
 
-- **Teselas reales del mapa** — en la prueba automática se simularon las teselas de OpenStreetMap para no depender de la red; conviene abrir `/catalog` en un navegador con conexión y confirmar que se ve el mapa base.
+- **Teselas reales del mapa** — CARTO Voyager responde 200, pero sirve la marca de agua «API KEY REQUIRED» en lugar del mapa base (ERR-019). Hace falta decidir una clave de API de CARTO o cambiar de proveedor, y volver a capturar `/catalog`.
 - **Dispositivo físico** — la verificación se hizo en Chromium con viewport de 375 px, no en un móvil real (Safari iOS: área segura, teclado virtual sobre el buscador).
 

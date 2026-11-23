@@ -63,7 +63,7 @@ context.md              Usuario, páginas, componentes y especificaciones de vis
 
 ## Retos opcionales hechos
 
-- **Mapa interactivo (4.4):** `react-leaflet` con teselas de OpenStreetMap, un pin de precio por alojamiento según sus coordenadas, encuadre automático y popup con enlace a la ficha.
+- **Mapa interactivo (4.4):** `react-leaflet` con teselas de CARTO Voyager (datos de OpenStreetMap; pendiente de clave de API, ver ERR-019), un pin de precio por alojamiento según sus coordenadas, encuadre automático y popup con enlace a la ficha.
 - **Selector de fechas (5.7):** `react-day-picker` en español, sin días pasados. Calcula las noches y el total (noches × precio) y deja «Reservar» deshabilitado hasta elegir un rango.
 
 ## Documentación y verificación

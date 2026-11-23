@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+/* Tailwind (preflight: img { max-width: 100%; height: auto }) estira las teselas y los pines de Leaflet. */
+.leaflet-container img.leaflet-tile,
+.leaflet-container img.leaflet-marker-icon {
+  max-width: none !important;
+  max-height: none !important;
+}

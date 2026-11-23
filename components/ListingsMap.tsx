@@ -32,12 +32,15 @@ const ListingsMap = ({ listings }: { listings: readonly Listing[] }) => (
     center={[15, 0]}
     zoom={2}
     scrollWheelZoom={false}
-    className="h-80 w-full rounded-2xl md:h-full"
+    className="h-[400px] w-full overflow-hidden rounded-2xl md:h-full"
   >
     <TileLayer
-      url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+      url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+      subdomains="abcd"
       maxZoom={19}
-      attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
+      attribution={
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      }
     />
     <FitListingBounds listings={listings} />
     {listings.map(({ id, title, pricePerNight, coordinates: { lat, lng } }) => {

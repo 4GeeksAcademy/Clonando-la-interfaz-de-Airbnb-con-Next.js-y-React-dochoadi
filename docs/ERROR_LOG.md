@@ -179,3 +179,13 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: `components/ListingCard.tsx`.
 - Cómo evitarlo en el futuro: Revisar los iconos superpuestos sobre fotos muy claras y muy oscuras.
 - Estado: Resuelto; capturas regeneradas.
+
+### ERR-019 — Teselas OSM bloqueadas (403) y teselas estiradas por Tailwind en el mapa
+- Fecha / Prompt o fase: 2026-11-23 / Corrección del mapa de `/catalog` tras captura del usuario (Claude Code).
+- Síntoma (mensaje exacto o descripción): Las teselas de OpenStreetMap devolvían 403 «Access blocked: App is not following the tile usage policy». Además, las teselas se veían gigantes y desbordaban el contenedor del mapa.
+- Causa raíz: (a) La política de uso de teselas de `tile.openstreetmap.org` no permite esta aplicación. (b) El preflight de Tailwind (`img { max-width: 100%; height: auto }`) afecta a las teselas y a los iconos de Leaflet, que se dibujan en `<img>`, y el contenedor no tenía `overflow-hidden`.
+- Solución aplicada (comandos/cambios): `TileLayer` pasa a CARTO Voyager: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, `subdomains="abcd"`, `maxZoom={19}` y atribución OSM + CARTO. La ruta con `rasterTiles` (la de la instrucción) devolvió 404; la variante en minúsculas `rastertiles` devolvió 200. Regla en [globals.css](../app/globals.css) para `.leaflet-tile` y `.leaflet-marker-icon` con `max-width/max-height: none !important`. Contenedor con `h-[400px] w-full overflow-hidden md:h-full`. Playwright a 375 y 1280 px: 24/24 comprobaciones (teselas a 256 px con HTTP 200, 12 pines de 72×32 con el texto centrado a menos de 0,1 px, sin desbordamiento horizontal, sin «403» en la página).
+- Pendiente parcial: CARTO responde 200, pero sirve teselas con la marca de agua «API KEY REQUIRED» (tesela de unos 2 KB; en la misma zona OSM sirve unos 11 KB y Esri unos 29 KB). Verificar solo el código HTTP no basta. Hace falta decidir: una clave de API de CARTO o cambiar de proveedor.
+- Archivos afectados: [ListingsMap.tsx](../components/ListingsMap.tsx), [globals.css](../app/globals.css), [catalog-map-375.png](./screenshots/catalog-map-375.png), [catalog-map-1280.png](./screenshots/catalog-map-1280.png), [CREDITS.md](./CREDITS.md), [REQUIREMENTS_LOG.md](./REQUIREMENTS_LOG.md), README.md.
+- Cómo evitarlo en el futuro: Revisar las teselas en una captura real antes de dar el mapa por bueno: un 200 con marca de agua o un tamaño muy pequeño también es un fallo. Consultar la política de uso del proveedor antes de elegirlo. Comprobar en Leaflet los estilos que Tailwind puede pisar.
+- Estado: Pendiente parcial — el 403 y el desbordamiento están resueltos; falta decidir el proveedor o la clave de CARTO para quitar la marca de agua.

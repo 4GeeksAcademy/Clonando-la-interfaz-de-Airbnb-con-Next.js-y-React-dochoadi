@@ -26,3 +26,9 @@ Proceso: se comprobó con `file` que cada descarga era un JPEG válido de más d
 | `public/photos/interior-living-1.jpg` | Jarosław Ceborski ([@jarson](https://unsplash.com/@jarson)) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Living_room_(Unsplash).jpg) · [original en Unsplash](https://unsplash.com/photos/jn7uVeCdf6U) | CC0 1.0 (dominio público) |
 | `public/photos/interior-bedroom-1.jpg` | Markus Spiske ([@markusspiske](https://unsplash.com/@markusspiske)) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Hotel_bedroom_windows_(Unsplash).jpg) · [original en Unsplash](https://unsplash.com/photos/g5ZIXjzRGds) | CC0 1.0 (dominio público) |
 | `public/photos/interior-kitchen-1.jpg` | NeONBRAND ([@neonbrand](https://unsplash.com/@neonbrand)) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Blue_white_kitchen_interior_(Unsplash).jpg) · [original en Unsplash](https://unsplash.com/photos/kdwahpWYfQo) | CC0 1.0 (dominio público) |
+
+## Mapa del Catálogo
+
+- **Leaflet** (BSD-2-Clause) y **react-leaflet** (MIT): librerías del mapa interactivo.
+- **Teselas:** [CARTO Voyager](https://carto.com/attributions) sobre datos de [OpenStreetMap](https://www.openstreetmap.org/copyright) (© colaboradores de OpenStreetMap, licencia ODbL). Atribución visible en el control del mapa.
+- Estado (2026-11-23, ERR-019): las teselas devuelven 200, pero CARTO sirve una marca de agua «API KEY REQUIRED» hasta que haya una clave de API o se cambie de proveedor.
