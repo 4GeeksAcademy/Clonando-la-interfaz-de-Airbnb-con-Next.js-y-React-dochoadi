@@ -52,24 +52,24 @@
 
 ### 3 — Página de inicio (/)
 
- - [ ] 3.1 Barra de navegación superior: logo, campo de búsqueda, iconos del menú de usuario
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 3.2 Búsqueda con useState: guarda el texto y filtra tarjetas en tiempo real (la lista de tarjetas es estado local, se actualiza en cada pulsación)
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 3.3 Fila horizontal de filtros por categoría bajo la navbar (icono + etiqueta: Playa, Mansiones, Tendencias, etc.), useState para la categoría activa y resaltarla
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 3.4 Cuadrícula responsive de tarjetas: foto placeholder, título, precio por noche y valoración con estrellas
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 3.5 useEffect para simular carga: lista vacía, loading=true, tras setTimeout (~1s) asignar datos y loading=false; indicador de carga visible
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 3.6 Cuadrícula en 1 columna en móvil y varias columnas en escritorio
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 3.1 Barra de navegación superior: logo, campo de búsqueda, iconos del menú de usuario
+   - Evidencia: [Navbar.tsx](../components/Navbar.tsx) incorpora una marca propia, el buscador y los iconos del menú.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 3.2 Búsqueda con useState: guarda el texto y filtra tarjetas en tiempo real (la lista de tarjetas es estado local, se actualiza en cada pulsación)
+   - Evidencia: [SearchBar.tsx](../components/SearchBar.tsx) actualiza la consulta de [HomeContent.tsx](../components/HomeContent.tsx) en cada pulsación; la vista deriva los resultados del estado local sin duplicarlo.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 3.3 Fila horizontal de filtros por categoría bajo la navbar (icono + etiqueta: Playa, Mansiones, Tendencias, etc.), useState para la categoría activa y resaltarla
+   - Evidencia: [CategoryBar.tsx](../components/CategoryBar.tsx) permite desplazamiento horizontal y [CategoryItem.tsx](../components/CategoryItem.tsx) destaca la selección controlada por [HomeContent.tsx](../components/HomeContent.tsx).
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 3.4 Cuadrícula responsive de tarjetas: foto placeholder, título, precio por noche y valoración con estrellas
+   - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx) muestra el gradiente 4:3, título, ubicación, precio y [StarRating.tsx](../components/StarRating.tsx).
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 3.5 useEffect para simular carga: lista vacía, loading=true, tras setTimeout (~1s) asignar datos y loading=false; indicador de carga visible
+   - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) programa y limpia el temporizador de 1000 ms; [LoadingSpinner.tsx](../components/LoadingSpinner.tsx) muestra el estado de carga inicial.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 3.6 Cuadrícula en 1 columna en móvil y varias columnas en escritorio
+   - Evidencia: [ListingGrid.tsx](../components/ListingGrid.tsx) declara una columna base, dos en `md:` y cuatro en `lg:`.
+   - Estado/fecha: Completado — 2026-11-23.
 
 ### 4 — Página de catálogo (/catalog)
 
@@ -128,14 +128,14 @@
 ### 7 — Calidad de código
 
  - [ ] 7.1 Cada componente en su propio archivo dentro de /components
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: la Home compone archivos individuales de [components/](../components/) desde [app/page.tsx](../app/page.tsx).
+   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
  - [ ] 7.2 Ningún componente supera ~80 líneas de JSX + lógica
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: los componentes de [Home](../components/HomeContent.tsx), incluidos [Navbar.tsx](../components/Navbar.tsx) y [BottomNav.tsx](../components/BottomNav.tsx), no superan 80 líneas.
+   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
  - [ ] 7.3 Todos los componentes funcionales definidos como const; sin clases
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: [page.tsx](../app/page.tsx) y los componentes de la Home en [components/](../components/) usan funciones definidas con `const`.
+   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
 
 ## SECCIÓN B — QUÉ VAMOS A EVALUAR
 
@@ -146,23 +146,23 @@
    - Evidencia: [package.json](../package.json), [app/page.tsx](../app/page.tsx) y [app/globals.css](../app/globals.css). Página mínima en lugar de la plantilla; `npm run build` y `npm run lint` sin errores.
    - Estado/fecha: Completado — 2026-11-23.
  - [ ] E3 Tres rutas implementadas y navegables: /, /catalog y /rooms/[id]
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: [app/page.tsx](../app/page.tsx) implementa `/` (HTTP 200 en desarrollo). [HomeContent.tsx](../components/HomeContent.tsx) y [ListingCard.tsx](../components/ListingCard.tsx) apuntan a las rutas aún pendientes.
+   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
  - [ ] E4 Toda la navegación interna usa <Link>, sin recargas completas
    - Evidencia:
    - Estado/fecha:
  - [ ] E5 Diseño mobile-first: 375px correcto antes de aplicar breakpoints de escritorio
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: [Navbar.tsx](../components/Navbar.tsx), [ListingGrid.tsx](../components/ListingGrid.tsx) y [BottomNav.tsx](../components/BottomNav.tsx) definen estilos base de móvil. No se ha validado visualmente a 375 px.
+   - Estado/fecha: Parcial — 2026-11-23; faltan la comprobación visual y las demás vistas.
  - [ ] E6 Componente de tarjeta reutilizado en Home y Catálogo
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: [ListingCard.tsx](../components/ListingCard.tsx) se usa desde [ListingGrid.tsx](../components/ListingGrid.tsx) en Home; falta reutilizarlo en Catálogo.
+   - Estado/fecha: Parcial — 2026-11-23.
  - [ ] E7 useState en al menos tres casos distintos (búsqueda, categoría, orden, huéspedes, índice de galería)
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: [HomeContent.tsx](../components/HomeContent.tsx) implementa búsqueda y categoría activa con `useState`; falta un tercer caso de interacción.
+   - Estado/fecha: Parcial — 2026-11-23.
  - [ ] E8 useEffect para simular carga en al menos dos páginas, con estado de carga visible
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: Parcial: [HomeContent.tsx](../components/HomeContent.tsx) y [LoadingSpinner.tsx](../components/LoadingSpinner.tsx) cubren la carga de Home; falta la de Detalle.
+   - Estado/fecha: Parcial — 2026-11-23.
  - [ ] E9 Detalle con las cinco secciones: galería con navegación, cabecera, anfitrión, amenities, tarjeta de reserva
    - Evidencia:
    - Estado/fecha:

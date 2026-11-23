@@ -1,7 +1,5 @@
-const HomePage = () => (
-  <main className="px-4 py-6 md:px-8">
-    <h1 className="text-2xl font-semibold">Airbnb Clone</h1>
-  </main>
-);
+import { HomeContent } from "@/components/HomeContent";
+
+const HomePage = () => <HomeContent />;
 
 export default HomePage;
