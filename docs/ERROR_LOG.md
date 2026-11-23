@@ -12,3 +12,32 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados:
 - Cómo evitarlo en el futuro:
 - Estado: Resuelto / Pendiente
+
+## Entradas
+
+### ERR-001 — Archivo marcador restringido
+- Fecha / Prompt o fase: 2026-11-23 / Configuración inicial de Next.js.
+- Síntoma (mensaje exacto o descripción): `Access denied`: la herramienta rechazó la creación de `data/.gitkeep`.
+- Causa raíz: La ruta está excluida por la política de contenido de la organización.
+- Solución aplicada (comandos/cambios): Se separaron los cambios permitidos del archivo restringido. La creación del marcador sigue pendiente.
+- Archivos afectados: `data/.gitkeep`.
+- Cómo evitarlo en el futuro: Aplicar los cambios permitidos en un lote separado y gestionar la ruta restringida mediante el flujo autorizado de la organización.
+- Estado: Pendiente
+
+### ERR-002 — Next.js altera las instrucciones del repositorio
+- Fecha / Prompt o fase: 2026-11-23 / Prueba de arranque de Next.js.
+- Síntoma (mensaje exacto o descripción): `next dev` añadió un bloque generado a `AGENTS.md`, que dejó de coincidir con las otras dos copias.
+- Causa raíz: Next.js 16.4.6 genera reglas de agente automáticamente al arrancar.
+- Solución aplicada (comandos/cambios): Se añadió `agentRules: false` a `next.config.ts` y se retiró solo el bloque generado.
+- Archivos afectados: `AGENTS.md`, `next.config.ts`.
+- Cómo evitarlo en el futuro: Mantener desactivada la generación automática y comprobar que las tres copias de instrucciones siguen siendo idénticas.
+- Estado: Resuelto
+
+### ERR-003 — Lockfile excluido del commit
+- Fecha / Prompt o fase: 2026-11-23 / Preparación del commit de configuración.
+- Síntoma (mensaje exacto o descripción): `Access denied`: no se pudo añadir `package-lock.json` al preparar el commit.
+- Causa raíz: La ruta está excluida por la política de contenido de la organización.
+- Solución aplicada (comandos/cambios): Se prepararon únicamente los archivos permitidos. Incorporar el lockfile sigue pendiente.
+- Archivos afectados: `package-lock.json`.
+- Cómo evitarlo en el futuro: Gestionar la incorporación del lockfile mediante el flujo autorizado de la organización.
+- Estado: Pendiente

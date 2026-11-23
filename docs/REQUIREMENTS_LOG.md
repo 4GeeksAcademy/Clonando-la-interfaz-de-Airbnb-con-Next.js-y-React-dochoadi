@@ -19,18 +19,18 @@
 
 ### 1 — Configuración del proyecto
 
- - [ ] 1.1 Configurar Next.js 16 con TypeScript, Tailwind CSS y App Router usando create-next-app
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 1.2 Revisar los comandos generados antes de ejecutarlos y confirmar que el servidor de desarrollo arranca
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 1.3 Carpetas: /app (rutas), /components (UI reutilizable), /types (interfaces TS)
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 1.4 Tailwind CSS para todos los estilos
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 1.1 Configurar Next.js 16 con TypeScript, Tailwind CSS y App Router usando create-next-app
+   - Evidencia: [package.json](../package.json), [tsconfig.json](../tsconfig.json) y [app/layout.tsx](../app/layout.tsx). Scaffold de `create-next-app@16`.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 1.2 Revisar los comandos generados antes de ejecutarlos y confirmar que el servidor de desarrollo arranca
+   - Evidencia: comandos y flags explicados antes de ejecutarlos; `npm run dev` ([package.json](../package.json)) sirvió [app/page.tsx](../app/page.tsx) en `http://localhost:3000/` con HTTP 200. Se detuvo el servidor tras la prueba.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 1.3 Carpetas: /app (rutas), /components (UI reutilizable), /types (interfaces TS)
+   - Evidencia: [app/](../app/), [components/.gitkeep](../components/.gitkeep) y [types/.gitkeep](../types/.gitkeep). El marcador adicional de `data/` queda pendiente (ERR-001).
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 1.4 Tailwind CSS para todos los estilos
+   - Evidencia: [app/globals.css](../app/globals.css) importa Tailwind; [app/layout.tsx](../app/layout.tsx) y [app/page.tsx](../app/page.tsx) usan utilidades. Se comprobó que el servidor entrega el CSS compilado.
+   - Estado/fecha: Completado — 2026-11-23.
 
 ### 2 — Flujo de trabajo con prompts de visión
 
@@ -139,9 +139,9 @@
  - [x] E1 Existe `context.md` en la raíz con descripción clara de interfaz, componentes y usuario
    - Evidencia: [context.md](../context.md), secciones 1 a 3.
    - Estado/fecha: Completado — 2026-11-23.
- - [ ] E2 Proyecto configurado con Next.js 16, TypeScript, Tailwind y App Router (sin plantilla de inicio)
-   - Evidencia:
-   - Estado/fecha:
+ - [x] E2 Proyecto configurado con Next.js 16, TypeScript, Tailwind y App Router (sin plantilla de inicio)
+   - Evidencia: [package.json](../package.json), [app/page.tsx](../app/page.tsx) y [app/globals.css](../app/globals.css). Página mínima en lugar de la plantilla; `npm run build` y `npm run lint` sin errores.
+   - Estado/fecha: Completado — 2026-11-23.
  - [ ] E3 Tres rutas implementadas y navegables: /, /catalog y /rooms/[id]
    - Evidencia:
    - Estado/fecha:
