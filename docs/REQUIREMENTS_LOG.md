@@ -35,14 +35,17 @@
 ### 2 — Flujo de trabajo con prompts de visión
 
  - [ ] 2.1 Captura de cada una de las 3 páginas de Airbnb en viewport móvil 375px
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: [home-1.jpg](./screenshots/home-1.jpg), [home-2.jpg](./screenshots/home-2.jpg) y [home-3.jpg](./screenshots/home-3.jpg).
+   - Estado/fecha: Parcial — 2026-11-23. Referencia móvil de Home a ~606 px; falta evidencia a 375 px y faltan Catálogo y Detalle.
+   - [x] Home: tres tramos de scroll recibidos como referencia visual.
  - [ ] 2.2 Adjuntar cada captura al agente y pedir especificación de componentes (nombre, props, relación de layout)
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: capturas y prompt literal en [context.md → Home](../context.md#home).
+   - Estado/fecha: Parcial — 2026-11-23. Home revisada; Catálogo y Detalle pendientes.
+   - [x] Home: prompt de visión y capturas revisados.
  - [ ] 2.3 Documentar cada especificación como comentario en el código o en context.md ANTES de implementar esa vista
-   - Evidencia:
-   - Estado/fecha:
+   - Evidencia: especificación completa en [context.md → Home](../context.md#home).
+   - Estado/fecha: Parcial — 2026-11-23. Home documentada antes de implementar la vista; Catálogo y Detalle pendientes.
+   - [x] Home: componentes, props, estado, layout y adaptación responsive documentados.
  - [ ] 2.4 IMPORTANTE: ninguna librería de componentes preconstruida (ni shadcn, MUI, Ant Design, Chakra)
    - Evidencia:
    - Estado/fecha:
