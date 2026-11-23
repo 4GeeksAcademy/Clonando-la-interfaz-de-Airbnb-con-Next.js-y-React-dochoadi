@@ -17,8 +17,8 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 
 ### ERR-001 — Archivo marcador restringido
 - Fecha / Prompt o fase: 2026-11-23 / Configuración inicial de Next.js.
-- Síntoma (mensaje exacto o descripción): `Access denied`: la herramienta rechazó la creación de `data/.gitkeep`.
-- Causa raíz: La ruta está excluida por la política de contenido de la organización.
+- Síntoma (mensaje exacto o descripción): `Access denied: "/workspaces/Clonando-la-interfaz-de-Airbnb-con-Next.js-y-React-dochoadi/data/.gitkeep" is excluded by organization content policy. Do not attempt to access this file.`
+- Causa raíz: La política de exclusión de contenido de la organización bloqueó la creación en Copilot, antes de que Git pudiera intervenir.
 - Solución aplicada (comandos/cambios): Se separaron los cambios permitidos del archivo restringido. La creación del marcador sigue pendiente.
 - Archivos afectados: `data/.gitkeep`.
 - Cómo evitarlo en el futuro: Aplicar los cambios permitidos en un lote separado y gestionar la ruta restringida mediante el flujo autorizado de la organización.
@@ -35,9 +35,9 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 
 ### ERR-003 — Lockfile excluido del commit
 - Fecha / Prompt o fase: 2026-11-23 / Preparación del commit de configuración.
-- Síntoma (mensaje exacto o descripción): `Access denied`: no se pudo añadir `package-lock.json` al preparar el commit.
-- Causa raíz: La ruta está excluida por la política de contenido de la organización.
-- Solución aplicada (comandos/cambios): Se prepararon únicamente los archivos permitidos. Incorporar el lockfile sigue pendiente.
+- Síntoma (mensaje exacto o descripción): `Access denied: "/workspaces/Clonando-la-interfaz-de-Airbnb-con-Next.js-y-React-dochoadi/package-lock.json" is excluded by organization content policy. Do not attempt to access this file.`
+- Causa raíz: La política de exclusión de contenido de la organización bloqueó la operación en Copilot antes de ejecutar `git add`. No fue un rechazo de GitHub.
+- Solución aplicada (comandos/cambios): Se prepararon únicamente los archivos permitidos. El diagnóstico posterior confirmó que `git status -sb` muestra `?? package-lock.json`, que `core.excludesfile` no está configurado y que `.gitignore` y `.git/info/exclude` no contienen una regla que explique el bloqueo. No se forzó la inclusión del lockfile.
 - Archivos afectados: `package-lock.json`.
 - Cómo evitarlo en el futuro: Gestionar la incorporación del lockfile mediante el flujo autorizado de la organización.
 - Estado: Pendiente
