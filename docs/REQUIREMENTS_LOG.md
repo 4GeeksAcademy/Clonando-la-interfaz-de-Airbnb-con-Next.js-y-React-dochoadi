@@ -85,9 +85,9 @@
  - [x] 4.3 Área de mapa a la derecha de la lista (escritorio) o debajo (móvil); por defecto placeholder gris con texto "Mapa"
    - Evidencia: [CatalogContent.tsx](../components/CatalogContent.tsx) coloca el mapa después de la lista en móvil y a la derecha con `sticky` desde `md:`. La respuesta HTTP en dev incluyó [MapPlaceholder.tsx](../components/MapPlaceholder.tsx) con el texto «Mapa».
    - Estado/fecha: Completado — 2026-11-23.
- - [ ] 4.4 RETO OPCIONAL: sustituir placeholder por mapa interactivo real (react-leaflet o Google Maps) con cada alojamiento como pin usando sus coordenadas
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 4.4 RETO OPCIONAL: sustituir placeholder por mapa interactivo real (react-leaflet o Google Maps) con cada alojamiento como pin usando sus coordenadas
+   - Evidencia: [MapSection.tsx](../components/MapSection.tsx) carga Leaflet sin SSR. [ListingsMap.tsx](../components/ListingsMap.tsx) muestra pines de precio y teselas de OpenStreetMap con atribución; [FitListingBounds.tsx](../components/FitListingBounds.tsx) encuadra las coordenadas. Chromium verificó 12 pines, un pin al filtrar y la navegación desde el popup sin recargar el documento (teselas simuladas).
+   - Estado/fecha: Completado — 2026-11-23.
 
 ### 5 — Página de detalle (/rooms/[id])
 
@@ -157,12 +157,12 @@
  - [ ] E5 Diseño mobile-first: 375px correcto antes de aplicar breakpoints de escritorio
    - Evidencia: Parcial: [Navbar.tsx](../components/Navbar.tsx), [ListingGrid.tsx](../components/ListingGrid.tsx) y [BottomNav.tsx](../components/BottomNav.tsx) definen estilos base de móvil. No se ha validado visualmente a 375 px.
    - Estado/fecha: Parcial — 2026-11-23; faltan la comprobación visual y las demás vistas.
- - [ ] E6 Componente de tarjeta reutilizado en Home y Catálogo
-   - Evidencia: Parcial: [ListingCard.tsx](../components/ListingCard.tsx) se usa desde [ListingGrid.tsx](../components/ListingGrid.tsx) en Home; falta reutilizarlo en Catálogo.
-   - Estado/fecha: Parcial — 2026-11-23.
- - [ ] E7 useState en al menos tres casos distintos (búsqueda, categoría, orden, huéspedes, índice de galería)
-   - Evidencia: Parcial: [HomeContent.tsx](../components/HomeContent.tsx) implementa búsqueda y categoría activa con `useState`; falta un tercer caso de interacción.
-   - Estado/fecha: Parcial — 2026-11-23.
+ - [x] E6 Componente de tarjeta reutilizado en Home y Catálogo
+   - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) y [CatalogContent.tsx](../components/CatalogContent.tsx) usan [ListingGrid.tsx](../components/ListingGrid.tsx), que renderiza el mismo [ListingCard.tsx](../components/ListingCard.tsx).
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] E7 useState en al menos tres casos distintos (búsqueda, categoría, orden, huéspedes, índice de galería)
+   - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) usa `useState` para búsqueda y categoría; [CatalogContent.tsx](../components/CatalogContent.tsx), para el orden por precio. Chromium comprobó el cambio de ascendente a descendente.
+   - Estado/fecha: Completado — 2026-11-23.
  - [ ] E8 useEffect para simular carga en al menos dos páginas, con estado de carga visible
    - Evidencia: Parcial: [HomeContent.tsx](../components/HomeContent.tsx) y [LoadingSpinner.tsx](../components/LoadingSpinner.tsx) cubren la carga de Home; falta la de Detalle.
    - Estado/fecha: Parcial — 2026-11-23.

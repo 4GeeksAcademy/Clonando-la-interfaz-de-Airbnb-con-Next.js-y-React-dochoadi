@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Listing } from "@/types/listing";
 import { ListingGrid } from "./ListingGrid";
-import { MapPlaceholder } from "./MapPlaceholder";
+import { MapSection } from "./MapSection";
 import { ResultsHeader } from "./ResultsHeader";
 
 /** Spec visión: ordena el catálogo y distribuye la lista y el mapa. */
@@ -27,8 +27,8 @@ export const CatalogContent = ({ listings }: { listings: readonly Listing[] }) =
             </p>
           )}
         </section>
-        <aside id="mapa" aria-label="Mapa de alojamientos" tabIndex={-1} className="scroll-mt-24 md:sticky md:top-24 md:h-[calc(100vh-7rem)] md:w-1/2">
-          <MapPlaceholder />
+        <aside id="mapa" aria-label="Mapa de alojamientos" tabIndex={-1} className="isolate scroll-mt-24 md:sticky md:top-24 md:h-[calc(100vh-7rem)] md:w-1/2">
+          <MapSection listings={listings} />
         </aside>
       </div>
       <Link

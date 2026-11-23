@@ -89,3 +89,12 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: Ninguno; prueba HTTP local.
 - Cómo evitarlo en el futuro: Comparar texto visible en las aserciones sobre contenido de React.
 - Estado: Resuelto; la prueba normalizada verificó `12 alojamientos` y `1 alojamiento`.
+
+### ERR-009 — Falta el navegador de pruebas
+- Fecha / Prompt o fase: 2026-11-23 / Catálogo, fase B.
+- Síntoma (mensaje exacto o descripción): `Error: Cannot find module 'playwright'` (`MODULE_NOT_FOUND`).
+- Causa raíz: El repositorio no incluye un ejecutor para pruebas de navegación en navegador.
+- Solución aplicada (comandos/cambios): Preparar Playwright y Chromium fuera del repositorio, sin modificar las dependencias de la aplicación.
+- Archivos afectados: Ninguno.
+- Cómo evitarlo en el futuro: Comprobar si hay un navegador de pruebas disponible al planificar la verificación.
+- Estado: Resuelto. Chromium confirmó que el enlace del popup abrió el detalle sin solicitar un documento nuevo. Las teselas se simularon durante la prueba.
