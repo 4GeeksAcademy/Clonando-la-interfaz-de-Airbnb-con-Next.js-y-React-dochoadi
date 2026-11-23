@@ -1,10 +1,10 @@
 /** Spec visión: buscador en forma de pastilla con lupa y texto controlado. */
-type SearchBarProps = {
+type SearchBarProps = { defaultValue: string } | {
   value: string;
   onChange: (value: string) => void;
 };
 
-export const SearchBar = ({ value, onChange }: SearchBarProps) => (
+export const SearchBar = (props: SearchBarProps) => (
   <label className="flex h-12 min-w-0 flex-1 items-center gap-2 rounded-full border border-neutral-200 px-3 shadow-sm focus-within:border-rose-600 focus-within:ring-1 focus-within:ring-rose-600 md:max-w-lg md:px-4">
     <svg
       aria-hidden="true"
@@ -21,8 +21,9 @@ export const SearchBar = ({ value, onChange }: SearchBarProps) => (
     <input
       type="search"
       placeholder="Empieza a buscar"
-      value={value}
-      onChange={(event) => onChange(event.currentTarget.value)}
+      {...("defaultValue" in props
+        ? { name: "q", defaultValue: props.defaultValue }
+        : { value: props.value, onChange: (event: React.ChangeEvent<HTMLInputElement>) => props.onChange(event.currentTarget.value) })}
       className="w-full min-w-0 bg-transparent text-base outline-none placeholder:text-neutral-600"
     />
   </label>

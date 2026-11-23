@@ -1,12 +1,12 @@
 /** Spec visión: barra inferior móvil con Explorar y accesos aún no disponibles. */
 import Link from "next/link";
 
-export const BottomNav = () => (
+export const BottomNav = ({ exploreHref = "/" }: { exploreHref?: "/" | "/catalog" }) => (
   <nav
     aria-label="Navegación móvil"
     className="fixed inset-x-0 bottom-0 z-10 grid grid-cols-3 border-t border-neutral-200 bg-white pb-[env(safe-area-inset-bottom)] text-xs md:hidden"
   >
-    <Link href="/" aria-current="page" className="flex h-16 flex-col items-center justify-center gap-1 font-semibold text-rose-700 focus-visible:outline-2 focus-visible:-outline-offset-2">
+    <Link href={exploreHref} aria-current="page" className="flex h-16 flex-col items-center justify-center gap-1 font-semibold text-rose-700 focus-visible:outline-2 focus-visible:-outline-offset-2">
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-6">
         <circle cx="10.5" cy="10.5" r="6.5" />
         <path d="m16 16 4 4" />

@@ -71,3 +71,21 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: Directorio generado `.next/static`.
 - Cómo evitarlo en el futuro: No inspeccionar directamente los directorios de artefactos excluidos.
 - Estado: Pendiente de verificación directa del CSS; no bloquea la compilación.
+
+### ERR-007 — Servidor de desarrollo duplicado
+- Fecha / Prompt o fase: 2026-11-23 / Catálogo, fase A.
+- Síntoma (mensaje exacto o descripción): `⨯ Another next dev server is already running.` La consulta al segundo servidor terminó con `fetch failed`.
+- Causa raíz: Ya había un servidor Next.js de este proyecto escuchando en `http://localhost:3000`.
+- Solución aplicada (comandos/cambios): Reutilizar el servidor de desarrollo existente en lugar de iniciar otro; no detener el proceso ajeno.
+- Archivos afectados: Ninguno.
+- Cómo evitarlo en el futuro: Verificar el servidor activo antes de iniciar otra instancia de desarrollo del mismo proyecto.
+- Estado: Resuelto; el servidor existente devolvió HTTP 200 para `/catalog`.
+
+### ERR-008 — La prueba del contador no toleraba comentarios de React
+- Fecha / Prompt o fase: 2026-11-23 / Catálogo, fase A.
+- Síntoma (mensaje exacto o descripción): `The input did not match the regular expression /12(?:<!-- -->)? alojamientos/. Input:`
+- Causa raíz: La comprobación comparaba el HTML bruto del encabezado en lugar de su texto visible.
+- Solución aplicada (comandos/cambios): Comparar el texto del `h1` tras quitar los comentarios HTML.
+- Archivos afectados: Ninguno; prueba HTTP local.
+- Cómo evitarlo en el futuro: Comparar texto visible en las aserciones sobre contenido de React.
+- Estado: Resuelto; la prueba normalizada verificó `12 alojamientos` y `1 alojamiento`.

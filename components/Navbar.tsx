@@ -4,7 +4,7 @@ import type { Category } from "@/types/listing";
 import { CategoryBar } from "./CategoryBar";
 import { SearchBar } from "./SearchBar";
 
-type NavbarProps = {
+type NavbarProps = { catalogQuery: string } | {
   query: string;
   onQueryChange: (value: string) => void;
   categories: readonly Category[];
@@ -12,9 +12,7 @@ type NavbarProps = {
   onCategoryChange: (id: string) => void;
 };
 
-export const Navbar = ({
-  query, onQueryChange, categories, activeCategoryId, onCategoryChange,
-}: NavbarProps) => (
+export const Navbar = (props: NavbarProps) => (
   <header className="sticky top-0 z-20 border-b border-neutral-200 bg-white">
     <div className="mx-auto max-w-7xl px-4 pt-3 md:px-8">
       <nav aria-label="Navegación principal" className="flex items-center justify-between gap-2 md:gap-6">
@@ -25,7 +23,16 @@ export const Navbar = ({
           </svg>
           <span className="text-xs md:text-lg">Estancias</span>
         </Link>
-        <SearchBar value={query} onChange={onQueryChange} />
+        {"catalogQuery" in props ? (
+          <form action="/catalog" className="flex min-w-0 flex-1 items-center gap-2 md:max-w-lg">
+            <SearchBar defaultValue={props.catalogQuery} />
+            <button type="submit" className="min-h-11 rounded-full px-2 text-sm font-semibold hover:bg-neutral-100">
+              Buscar
+            </button>
+          </form>
+        ) : (
+          <SearchBar value={props.query} onChange={props.onQueryChange} />
+        )}
         <details className="relative shrink-0">
           <summary
             aria-label="Menú de usuario"
@@ -45,7 +52,9 @@ export const Navbar = ({
           </p>
         </details>
       </nav>
-      <CategoryBar categories={categories} activeId={activeCategoryId} onSelect={onCategoryChange} />
+      {"catalogQuery" in props ? <div className="h-3" /> : (
+        <CategoryBar categories={props.categories} activeId={props.activeCategoryId} onSelect={props.onCategoryChange} />
+      )}
     </div>
   </header>
 );

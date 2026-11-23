@@ -76,15 +76,15 @@
 
 ### 4 — Página de catálogo (/catalog)
 
- - [ ] 4.1 Cabecera de resultados: número de resultados y control de orden (Ascendente/Descendente por precio) con useState que reordena las tarjetas
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 4.2 Reutilizar el componente de tarjeta de la Home
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 4.3 Área de mapa a la derecha de la lista (escritorio) o debajo (móvil); por defecto placeholder gris con texto "Mapa"
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 4.1 Cabecera de resultados: número de resultados y control de orden (Ascendente/Descendente por precio) con useState que reordena las tarjetas
+   - Evidencia: [ResultsHeader.tsx](../components/ResultsHeader.tsx) muestra el recuento y el selector accesible. [CatalogContent.tsx](../components/CatalogContent.tsx) ordena una copia de la lista con `useState`. `/catalog` respondió HTTP 200 en dev; la prueba confirmó el recuento, orden inicial y búsqueda.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 4.2 Reutilizar el componente de tarjeta de la Home
+   - Evidencia: [ListingGrid.tsx](../components/ListingGrid.tsx) comparte [ListingCard.tsx](../components/ListingCard.tsx) entre Home y Catálogo, incluida su portada y valoración.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 4.3 Área de mapa a la derecha de la lista (escritorio) o debajo (móvil); por defecto placeholder gris con texto "Mapa"
+   - Evidencia: [CatalogContent.tsx](../components/CatalogContent.tsx) coloca el mapa después de la lista en móvil y a la derecha con `sticky` desde `md:`. La respuesta HTTP en dev incluyó [MapPlaceholder.tsx](../components/MapPlaceholder.tsx) con el texto «Mapa».
+   - Estado/fecha: Completado — 2026-11-23.
  - [ ] 4.4 RETO OPCIONAL: sustituir placeholder por mapa interactivo real (react-leaflet o Google Maps) con cada alojamiento como pin usando sus coordenadas
    - Evidencia:
    - Estado/fecha:
