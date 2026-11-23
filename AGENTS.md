@@ -11,3 +11,4 @@
   - Al terminar cada tarea, marca el checkbox correspondiente en `docs/REQUIREMENTS_LOG.md` y registra el archivo o la ruta como evidencia, junto con el estado y la fecha.
   - Si falla un comando, build o lint, o si aparece un error de TypeScript, un error de ejecución o un bug visual, añade una entrada a `docs/ERROR_LOG.md` **antes de seguir**, con el formato definido allí. Anota cómo se solucionó; si todavía está pendiente, actualiza la entrada al resolverlo.
 - Antes de dar una tarea por terminada, comprueba que `npm run build` y `npm run lint` se ejecutan sin errores.
+- Tras CADA commit, haz `git push` a origin y verifica con `git status -sb` y `git log origin/<rama>..HEAD` que no queda nada sin subir. Al final de cada tarea informa: hash del commit, rama y resultado del push. Si el push falla (auth, rama sin upstream, rechazo), regístralo en docs/ERROR_LOG.md y resuélvelo antes de continuar.
