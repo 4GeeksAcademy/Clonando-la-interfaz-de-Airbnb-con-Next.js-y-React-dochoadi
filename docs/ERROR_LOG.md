@@ -161,3 +161,21 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: Ninguno del repositorio; scripts temporales.
 - Cómo evitarlo en el futuro: Agrupar consultas a la API de MediaWiki (hasta 50 títulos por petición) y espaciar las peticiones.
 - Estado: Resuelto.
+
+### ERR-017 — Clic de más en la prueba de la galería con fotos
+- Fecha / Prompt o fase: 2026-11-23 / Fotos reales, fase 2 (Claude Code).
+- Síntoma (mensaje exacto o descripción): `FAIL [375] /rooms/1 — alt de la galería (Apartamento con balcón en El Cabanyal — foto 2)` y `FAIL … Anterior desde 1 → 5 / 5`, a 375 y a 1280 px.
+- Causa raíz: El bucle del script pulsaba «Siguiente» también después de leer la sexta posición («1 / 5»), así que la galería quedaba en la foto 2. La app se comportaba bien: el alt «foto 2» y el contador eran coherentes con esa posición.
+- Solución aplicada (comandos/cambios): No pulsar «Siguiente» tras la última lectura del bucle.
+- Archivos afectados: Ninguno del repositorio; script temporal de Playwright.
+- Cómo evitarlo en el futuro: Comprobar la posición esperada de la galería antes de cada aserción que dependa de ella.
+- Estado: Resuelto.
+
+### ERR-018 — Corazón poco visible sobre fotos claras
+- Fecha / Prompt o fase: 2026-11-23 / Fotos reales, fase 2 (Claude Code).
+- Síntoma (mensaje exacto o descripción): Bug visual en `impl-fotos-catalog-1280.png`: en la tarjeta «Estudio a pasos de la rambla de Pocitos» (foto de interior blanco), el corazón superpuesto apenas se distingue.
+- Causa raíz: El icono (`fill-black/40 stroke-white`) se diseñó para gradientes de color medio; con fotos reales de fondo casi blanco, el trazo blanco pierde contraste.
+- Solución aplicada (comandos/cambios): Añadir una sombra al icono (`drop-shadow-[0_1px_2px_rgb(0_0_0/0.6)]`) para que tenga borde visible sobre cualquier foto.
+- Archivos afectados: `components/ListingCard.tsx`.
+- Cómo evitarlo en el futuro: Revisar los iconos superpuestos sobre fotos muy claras y muy oscuras.
+- Estado: Resuelto; capturas regeneradas.

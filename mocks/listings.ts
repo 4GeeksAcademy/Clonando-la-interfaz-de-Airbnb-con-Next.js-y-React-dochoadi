@@ -12,6 +12,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 39.4695, lng: -0.3303 },
     imageColor: "from-sky-300 to-cyan-100",
     propertyType: "apartment",
+    photo: "/photos/apartment-1.jpg",
   },
   {
     id: "estudio-lavapies",
@@ -24,6 +25,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 40.4086, lng: -3.7008 },
     imageColor: "from-rose-300 to-orange-200",
     propertyType: "loft",
+    photo: "/photos/loft-1.jpg",
   },
   {
     id: "villa-son-vida",
@@ -36,6 +38,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 39.5904, lng: 2.5902 },
     imageColor: "from-amber-300 to-stone-100",
     propertyType: "villa",
+    photo: "/photos/villa-1.jpg",
   },
   {
     id: "loft-bilbao-viejo",
@@ -48,6 +51,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 43.2542, lng: -2.9259 },
     imageColor: "from-orange-300 to-rose-100",
     propertyType: "loft",
+    photo: "/photos/loft-2.jpg",
   },
   {
     id: "cabana-canfranc",
@@ -60,6 +64,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 42.7521, lng: -0.5142 },
     imageColor: "from-emerald-300 to-green-100",
     propertyType: "cabin",
+    photo: "/photos/cabin-1.jpg",
   },
   {
     id: "casa-ribeira-sacra",
@@ -72,6 +77,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 42.4619, lng: -7.5868 },
     imageColor: "from-lime-300 to-yellow-100",
     propertyType: "house",
+    photo: "/photos/house-1.jpg",
   },
   {
     id: "terraza-las-palmas",
@@ -84,6 +90,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 28.138, lng: -15.4349 },
     imageColor: "from-blue-300 to-indigo-100",
     propertyType: "apartment",
+    photo: "/photos/apartment-2.jpg",
   },
   {
     id: "departamento-barranco",
@@ -96,6 +103,7 @@ export const listings: Listing[] = [
     coordinates: { lat: -12.1497, lng: -77.0221 },
     imageColor: "from-pink-300 to-fuchsia-100",
     propertyType: "apartment",
+    photo: "/photos/apartment-3.jpg",
   },
   {
     id: "casa-coyoacan",
@@ -108,6 +116,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 19.3497, lng: -99.1617 },
     imageColor: "from-fuchsia-300 to-violet-100",
     propertyType: "house",
+    photo: "/photos/house-2.jpg",
   },
   {
     id: "cabana-puerto-varas",
@@ -120,6 +129,7 @@ export const listings: Listing[] = [
     coordinates: { lat: -41.3195, lng: -72.9854 },
     imageColor: "from-indigo-300 to-sky-100",
     propertyType: "cabin",
+    photo: "/photos/cabin-4.jpg",
   },
   {
     id: "finca-jardin",
@@ -132,6 +142,7 @@ export const listings: Listing[] = [
     coordinates: { lat: 5.599, lng: -75.8186 },
     imageColor: "from-green-300 to-teal-100",
     propertyType: "villa",
+    photo: "/photos/villa-3.jpg",
   },
   {
     id: "estudio-pocitos",
@@ -144,5 +155,6 @@ export const listings: Listing[] = [
     coordinates: { lat: -34.9114, lng: -56.1475 },
     imageColor: "from-teal-300 to-emerald-100",
     propertyType: "loft",
+    photo: "/photos/loft-3.jpg",
   },
 ];

@@ -1,10 +1,10 @@
 /** Spec visión: tarjeta enlazada al detalle con portada, ubicación, precio y valoración. */
 import Link from "next/link";
 import type { Listing } from "@/types/listing";
-import { PlaceholderPhoto } from "./PlaceholderPhoto";
+import { ListingPhoto } from "./ListingPhoto";
 import { StarRating } from "./StarRating";
 
-type ListingCardProps = { listing: Listing };
+type ListingCardProps = { listing: Listing; priority?: boolean };
 
 const priceFormat = new Intl.NumberFormat("es-ES", {
   style: "currency",
@@ -12,15 +12,18 @@ const priceFormat = new Intl.NumberFormat("es-ES", {
   maximumFractionDigits: 0,
 });
 
-export const ListingCard = ({ listing }: ListingCardProps) => (
+export const ListingCard = ({ listing, priority = false }: ListingCardProps) => (
   <Link
     href={`/rooms/${listing.id}`}
     className="group block rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rose-600"
   >
     <div className="relative">
-      <PlaceholderPhoto
+      <ListingPhoto
+        src={listing.photo}
+        alt={listing.title}
         gradient={listing.imageColor}
         variant={listing.propertyType}
+        priority={priority}
         className="aspect-[4/3] rounded-2xl"
       />
       {listing.rating >= 4.9 && (
@@ -33,7 +36,7 @@ export const ListingCard = ({ listing }: ListingCardProps) => (
         viewBox="0 0 24 24"
         strokeWidth="2"
         strokeLinejoin="round"
-        className="absolute top-3 right-3 size-6 fill-black/40 stroke-white"
+        className="absolute top-3 right-3 size-6 fill-black/40 stroke-white drop-shadow-[0_1px_2px_rgb(0_0_0/0.6)]"
       >
         <path d="M12 21 4 13a5 5 0 0 1 7-7l1 1 1-1a5 5 0 0 1 7 7l-8 8Z" />
       </svg>

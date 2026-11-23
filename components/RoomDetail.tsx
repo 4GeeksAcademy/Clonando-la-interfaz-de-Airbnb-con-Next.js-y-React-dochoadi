@@ -27,7 +27,7 @@ export const RoomDetail = ({ id }: { id: string }) => {
   return (
     <>
       <BackToCatalog title={room.title} />
-      <PhotoGallery photos={room.photos} variant={room.propertyType} />
+      <PhotoGallery photos={room.photos} title={room.title} gradient={room.imageColor} variant={room.propertyType} />
       <div className="mt-6 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,380px)]">
         <div className="space-y-6">
           <RoomHeader
