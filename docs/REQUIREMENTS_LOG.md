@@ -35,16 +35,19 @@
 ### 2 — Flujo de trabajo con prompts de visión
 
  - [ ] 2.1 Captura de cada una de las 3 páginas de Airbnb en viewport móvil 375px
-   - Evidencia: [home-1.jpg](./screenshots/home-1.jpg), [home-2.jpg](./screenshots/home-2.jpg) y [home-3.jpg](./screenshots/home-3.jpg).
-   - Estado/fecha: Parcial — 2026-11-23. Referencia móvil de Home a ~606 px; falta evidencia a 375 px y faltan Catálogo y Detalle.
+   - Evidencia de Home: [home-1.jpg](./screenshots/home-1.jpg), [home-2.jpg](./screenshots/home-2.jpg) y [home-3.jpg](./screenshots/home-3.jpg).
+   - [x] Catálogo — referencias móviles aportadas: [catalog-1.jpg](./screenshots/catalog-1.jpg) y [catalog-2.jpg](./screenshots/catalog-2.jpg), dos tramos de la misma página a ~606 px.
+   - Estado/fecha: Parcial — 2026-11-23. Home y Catálogo cuentan con referencias a ~606 px; falta verificar el viewport de 375 px y registrar la evidencia de Detalle.
    - [x] Home: tres tramos de scroll recibidos como referencia visual.
  - [ ] 2.2 Adjuntar cada captura al agente y pedir especificación de componentes (nombre, props, relación de layout)
-   - Evidencia: capturas y prompt literal en [context.md → Home](../context.md#home).
-   - Estado/fecha: Parcial — 2026-11-23. Home revisada; Catálogo y Detalle pendientes.
+   - Evidencia de Home: capturas y prompt literal en [context.md → Home](../context.md#home).
+   - [x] Catálogo — ambas capturas revisadas; referencias y prompt literal en [context.md → Catálogo](../context.md#catálogo--especificación-de-visión).
+   - Estado/fecha: Parcial — 2026-11-23. Home y Catálogo revisados; Detalle pendiente.
    - [x] Home: prompt de visión y capturas revisados.
  - [ ] 2.3 Documentar cada especificación como comentario en el código o en context.md ANTES de implementar esa vista
-   - Evidencia: especificación completa en [context.md → Home](../context.md#home).
-   - Estado/fecha: Parcial — 2026-11-23. Home documentada antes de implementar la vista; Catálogo y Detalle pendientes.
+   - Evidencia de Home: especificación completa en [context.md → Home](../context.md#home).
+   - [x] Catálogo — especificación completa previa a la implementación en [context.md → Catálogo](../context.md#catálogo--especificación-de-visión).
+   - Estado/fecha: Parcial — 2026-11-23. Home y Catálogo documentados antes de implementar sus vistas; Detalle pendiente.
    - [x] Home: componentes, props, estado, layout y adaptación responsive documentados.
  - [ ] 2.4 IMPORTANTE: ninguna librería de componentes preconstruida (ni shadcn, MUI, Ant Design, Chakra)
    - Evidencia:
