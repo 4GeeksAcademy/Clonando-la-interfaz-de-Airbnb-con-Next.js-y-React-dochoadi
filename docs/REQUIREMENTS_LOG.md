@@ -26,7 +26,7 @@
    - Evidencia: comandos y flags explicados antes de ejecutarlos; `npm run dev` ([package.json](../package.json)) sirvió [app/page.tsx](../app/page.tsx) en `http://localhost:3000/` con HTTP 200. Se detuvo el servidor tras la prueba.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 1.3 Carpetas: /app (rutas), /components (UI reutilizable), /types (interfaces TS)
-   - Evidencia: [app/](../app/), [components/.gitkeep](../components/.gitkeep) y [types/.gitkeep](../types/.gitkeep). El marcador adicional de `data/` queda pendiente (ERR-001).
+   - Evidencia: [app/](../app/), [components/.gitkeep](../components/.gitkeep) y [types/.gitkeep](../types/.gitkeep). Los datos ficticios viven en [mocks/](../mocks/), sin marcador adicional (ERR-005).
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 1.4 Tailwind CSS para todos los estilos
    - Evidencia: [app/globals.css](../app/globals.css) importa Tailwind; [app/layout.tsx](../app/layout.tsx) y [app/page.tsx](../app/page.tsx) usan utilidades. Se comprobó que el servidor entrega el CSS compilado.

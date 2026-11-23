@@ -1,6 +1,6 @@
 # Instrucciones del proyecto
 
-- Stack: Next.js 16, TypeScript estricto, Tailwind CSS y App Router. Carpetas: `/app` (rutas), `/components` (UI reutilizable), `/types` (interfaces TS) y `/data` (datos mock).
+- Stack: Next.js 16, TypeScript estricto, Tailwind CSS y App Router. Carpetas: `/app` (rutas), `/components` (UI reutilizable), `/types` (interfaces TS) y `/mocks` (datos mock).
 - PROHIBIDO usar shadcn, MUI, Ant Design, Chakra o cualquier librería de componentes. Usa solo clases de utilidad de Tailwind y componentes propios. Solo para los retos opcionales se permiten `react-leaflet`/`leaflet` para el mapa y `react-day-picker` para el selector de fechas.
 - PROHIBIDO usar `<a href>` para navegación interna. Usa siempre `<Link>` de `next/link`.
 - PROHIBIDO usar `style={{}}` en línea y componentes de clase. Define los componentes funcionales con `const`.

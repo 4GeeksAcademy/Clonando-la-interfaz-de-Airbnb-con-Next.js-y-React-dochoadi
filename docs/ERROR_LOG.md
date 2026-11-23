@@ -53,3 +53,12 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: `data/categories.ts`, `data/listings.ts`, `data/rooms.ts`.
 - Cómo evitarlo en el futuro: Gestionar el acceso a las rutas mediante el flujo autorizado de la organización.
 - Estado: Pendiente
+
+### ERR-005 — Nueva ubicación para los datos ficticios
+- Fecha / Prompt o fase: 2026-11-23 / Datos mock en `/mocks`.
+- Síntoma (mensaje exacto o descripción): No se pudieron crear los módulos previstos en `/data` (mensajes en ERR-004).
+- Causa raíz: `/data` está excluida por la política de contenido de la organización.
+- Solución aplicada (comandos/cambios): Se adoptó `/mocks` para crear los datos ficticios nuevos y se actualizaron las instrucciones y el registro de requisitos. No se accedió a la carpeta excluida ni se modificó la política.
+- Archivos afectados: `mocks/categories.ts`, `mocks/listings.ts`, `mocks/rooms.ts`, `AGENTS.md`, `.github/copilot-instructions.md`, `CLAUDE.md`, `context.md`, `docs/REQUIREMENTS_LOG.md`.
+- Cómo evitarlo en el futuro: Mantener los datos ficticios nuevos en la ruta documentada.
+- Estado: Resuelto para los datos ficticios; la exclusión descrita en ERR-004 sigue vigente.

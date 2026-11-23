@@ -69,7 +69,7 @@ Inventario propuesto a partir de los requisitos y de la interfaz de referencia d
 - Diseñar primero para 375 px; usar `md:` (desde 768 px) solo para adaptar la distribución a escritorio.
 - Estilos con clases de utilidad de Tailwind y componentes propios, sin estilos en línea ni librerías de componentes. Textos de interfaz en español.
 - Usar `Link` de `next/link` para toda la navegación interna.
-- Servir los alojamientos y las fichas desde datos mock en `/data`, sin depender de un backend.
+- Servir los alojamientos y las fichas desde datos mock en `/mocks`, sin depender de un backend.
 - Implementar ambos retos: `react-leaflet` y `leaflet` para el mapa, y `react-day-picker` para las fechas. Son las únicas excepciones al uso de componentes propios.
 
 ## 6. Especificaciones derivadas de visión
