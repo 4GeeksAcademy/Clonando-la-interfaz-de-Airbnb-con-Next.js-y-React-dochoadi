@@ -62,7 +62,7 @@
    - Evidencia: [CategoryBar.tsx](../components/CategoryBar.tsx) permite desplazamiento horizontal y [CategoryItem.tsx](../components/CategoryItem.tsx) destaca la selección controlada por [HomeContent.tsx](../components/HomeContent.tsx).
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 3.4 Cuadrícula responsive de tarjetas: foto placeholder, título, precio por noche y valoración con estrellas
-   - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx) muestra el gradiente 4:3, título, ubicación, precio y [StarRating.tsx](../components/StarRating.tsx).
+   - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx) muestra una portada ilustrada 4:3 con [PlaceholderPhoto.tsx](../components/PlaceholderPhoto.tsx), conserva título, ubicación, precio y [StarRating.tsx](../components/StarRating.tsx), y añade un corazón decorativo y la etiqueta de recomendación desde 4,9. Los cinco tipos se asignan en [mocks/listings.ts](../mocks/listings.ts); la [galería de detalle](../app/rooms/%5Bid%5D/page.tsx) reutiliza el icono del alojamiento con cinco gradientes distintos.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 3.5 useEffect para simular carga: lista vacía, loading=true, tras setTimeout (~1s) asignar datos y loading=false; indicador de carga visible
    - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) programa y limpia el temporizador de 1000 ms; [LoadingSpinner.tsx](../components/LoadingSpinner.tsx) muestra el estado de carga inicial.

@@ -62,3 +62,12 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: `mocks/categories.ts`, `mocks/listings.ts`, `mocks/rooms.ts`, `AGENTS.md`, `.github/copilot-instructions.md`, `CLAUDE.md`, `context.md`, `docs/REQUIREMENTS_LOG.md`.
 - Cómo evitarlo en el futuro: Mantener los datos ficticios nuevos en la ruta documentada.
 - Estado: Resuelto para los datos ficticios; la exclusión descrita en ERR-004 sigue vigente.
+
+### ERR-006 — Inspección del CSS compilado restringida
+- Fecha / Prompt o fase: 2026-11-23 / Verificación de los placeholders.
+- Síntoma (mensaje exacto o descripción): `Access denied: "/workspaces/Clonando-la-interfaz-de-Airbnb-con-Next.js-y-React-dochoadi/.next/static" is excluded by organization content policy. Do not attempt to access this file.`
+- Causa raíz: La política de contenido impide la inspección directa del directorio de archivos estáticos compilados.
+- Solución aplicada (comandos/cambios): No se reintentó la lectura. El lint, el build y la prueba HTTP de la galería pasaron; la inspección directa del CSS quedó sin realizar.
+- Archivos afectados: Directorio generado `.next/static`.
+- Cómo evitarlo en el futuro: No inspeccionar directamente los directorios de artefactos excluidos.
+- Estado: Pendiente de verificación directa del CSS; no bloquea la compilación.

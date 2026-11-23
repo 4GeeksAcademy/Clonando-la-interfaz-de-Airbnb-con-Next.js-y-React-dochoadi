@@ -10,10 +10,10 @@ export const getRoomById = (id: string): Room | undefined => {
     description: `${listing.title}. Una base tranquila para recorrer ${listing.location} a tu ritmo, con espacio para preparar un desayuno y descansar al volver.`,
     photos: [
       listing.imageColor,
-      "bg-linear-to-br from-amber-200 to-orange-100",
-      "bg-linear-to-br from-stone-300 to-zinc-100",
-      "bg-linear-to-br from-lime-200 to-emerald-100",
-      "bg-linear-to-br from-cyan-200 to-blue-100",
+      "from-amber-200 to-orange-100",
+      "from-stone-300 to-zinc-100",
+      "from-lime-200 to-emerald-100",
+      "from-cyan-200 to-blue-100",
     ],
     host: { name: "Elena Martín", yearsHosting: 4, avatarColor: "bg-amber-200" },
     amenities: [

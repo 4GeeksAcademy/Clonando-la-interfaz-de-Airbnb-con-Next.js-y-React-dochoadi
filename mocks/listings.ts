@@ -10,7 +10,8 @@ export const listings: Listing[] = [
     reviewCount: 68,
     category: "playa",
     coordinates: { lat: 39.4695, lng: -0.3303 },
-    imageColor: "bg-linear-to-br from-sky-300 to-cyan-100",
+    imageColor: "from-sky-300 to-cyan-100",
+    propertyType: "apartment",
   },
   {
     id: "estudio-lavapies",
@@ -21,7 +22,8 @@ export const listings: Listing[] = [
     reviewCount: 106,
     category: "ciudad",
     coordinates: { lat: 40.4086, lng: -3.7008 },
-    imageColor: "bg-linear-to-br from-rose-300 to-orange-200",
+    imageColor: "from-rose-300 to-orange-200",
+    propertyType: "loft",
   },
   {
     id: "villa-son-vida",
@@ -32,7 +34,8 @@ export const listings: Listing[] = [
     reviewCount: 29,
     category: "mansiones",
     coordinates: { lat: 39.5904, lng: 2.5902 },
-    imageColor: "bg-linear-to-br from-amber-300 to-stone-100",
+    imageColor: "from-amber-300 to-stone-100",
+    propertyType: "villa",
   },
   {
     id: "loft-bilbao-viejo",
@@ -43,7 +46,8 @@ export const listings: Listing[] = [
     reviewCount: 145,
     category: "tendencias",
     coordinates: { lat: 43.2542, lng: -2.9259 },
-    imageColor: "bg-linear-to-br from-orange-300 to-rose-100",
+    imageColor: "from-orange-300 to-rose-100",
+    propertyType: "loft",
   },
   {
     id: "cabana-canfranc",
@@ -54,7 +58,8 @@ export const listings: Listing[] = [
     reviewCount: 54,
     category: "cabanas",
     coordinates: { lat: 42.7521, lng: -0.5142 },
-    imageColor: "bg-linear-to-br from-emerald-300 to-green-100",
+    imageColor: "from-emerald-300 to-green-100",
+    propertyType: "cabin",
   },
   {
     id: "casa-ribeira-sacra",
@@ -65,7 +70,8 @@ export const listings: Listing[] = [
     reviewCount: 37,
     category: "campo",
     coordinates: { lat: 42.4619, lng: -7.5868 },
-    imageColor: "bg-linear-to-br from-lime-300 to-yellow-100",
+    imageColor: "from-lime-300 to-yellow-100",
+    propertyType: "house",
   },
   {
     id: "terraza-las-palmas",
@@ -76,7 +82,8 @@ export const listings: Listing[] = [
     reviewCount: 82,
     category: "piscinas",
     coordinates: { lat: 28.138, lng: -15.4349 },
-    imageColor: "bg-linear-to-br from-blue-300 to-indigo-100",
+    imageColor: "from-blue-300 to-indigo-100",
+    propertyType: "apartment",
   },
   {
     id: "departamento-barranco",
@@ -87,7 +94,8 @@ export const listings: Listing[] = [
     reviewCount: 118,
     category: "ciudad",
     coordinates: { lat: -12.1497, lng: -77.0221 },
-    imageColor: "bg-linear-to-br from-pink-300 to-fuchsia-100",
+    imageColor: "from-pink-300 to-fuchsia-100",
+    propertyType: "apartment",
   },
   {
     id: "casa-coyoacan",
@@ -98,7 +106,8 @@ export const listings: Listing[] = [
     reviewCount: 92,
     category: "tendencias",
     coordinates: { lat: 19.3497, lng: -99.1617 },
-    imageColor: "bg-linear-to-br from-fuchsia-300 to-violet-100",
+    imageColor: "from-fuchsia-300 to-violet-100",
+    propertyType: "house",
   },
   {
     id: "cabana-puerto-varas",
@@ -109,7 +118,8 @@ export const listings: Listing[] = [
     reviewCount: 64,
     category: "cabanas",
     coordinates: { lat: -41.3195, lng: -72.9854 },
-    imageColor: "bg-linear-to-br from-indigo-300 to-sky-100",
+    imageColor: "from-indigo-300 to-sky-100",
+    propertyType: "cabin",
   },
   {
     id: "finca-jardin",
@@ -120,7 +130,8 @@ export const listings: Listing[] = [
     reviewCount: 44,
     category: "campo",
     coordinates: { lat: 5.599, lng: -75.8186 },
-    imageColor: "bg-linear-to-br from-green-300 to-teal-100",
+    imageColor: "from-green-300 to-teal-100",
+    propertyType: "villa",
   },
   {
     id: "estudio-pocitos",
@@ -131,6 +142,7 @@ export const listings: Listing[] = [
     reviewCount: 38,
     category: "playa",
     coordinates: { lat: -34.9114, lng: -56.1475 },
-    imageColor: "bg-linear-to-br from-teal-300 to-emerald-100",
+    imageColor: "from-teal-300 to-emerald-100",
+    propertyType: "loft",
   },
 ];

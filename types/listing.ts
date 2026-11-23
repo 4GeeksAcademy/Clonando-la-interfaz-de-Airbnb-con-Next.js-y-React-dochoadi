@@ -14,6 +14,7 @@ export interface Listing {
   category: string;
   coordinates: { lat: number; lng: number };
   imageColor: string;
+  propertyType?: "house" | "cabin" | "villa" | "apartment" | "loft";
 }
 
 export interface Host {
