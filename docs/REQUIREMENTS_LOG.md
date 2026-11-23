@@ -112,9 +112,9 @@
  - [x] 5.6 Tarjeta de reserva: precio por noche, contador de huéspedes (useState, rango mín/máx) y botón CTA
    - Evidencia: [BookingCard.tsx](../components/BookingCard.tsx) controla [GuestCounter.tsx](../components/GuestCounter.tsx). Chromium verificó límites de 1 a 6 y el aviso de que no se realizan reservas reales.
    - Estado/fecha: Completado — 2026-11-23.
- - [ ] 5.7 RETO OPCIONAL: campos funcionales de fecha entrada/salida con librería de date picker y precio total según noches seleccionadas
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 5.7 RETO OPCIONAL: campos funcionales de fecha entrada/salida con librería de date picker y precio total según noches seleccionadas
+   - Evidencia: [DateRangePicker.tsx](../components/DateRangePicker.tsx) usa `react-day-picker` v9 en español; [BookingCard.tsx](../components/BookingCard.tsx) calcula noches con `differenceInCalendarDays` y actualiza el total. Chromium a 375 px comprobó que las fechas pasadas y el CTA sin rango completo quedan deshabilitados, que 3 noches × 112 € dan 336 € y que no hay desbordamiento horizontal.
+   - Estado/fecha: Completado — 2026-11-23.
 
 ### 6 — Navegación
 
