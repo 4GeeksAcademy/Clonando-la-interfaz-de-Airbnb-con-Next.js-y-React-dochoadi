@@ -38,7 +38,7 @@
    - Evidencia de Home: [home-1.jpg](./screenshots/home-1.jpg), [home-2.jpg](./screenshots/home-2.jpg) y [home-3.jpg](./screenshots/home-3.jpg).
    - [x] Catálogo — referencias móviles aportadas: [catalog-1.jpg](./screenshots/catalog-1.jpg) y [catalog-2.jpg](./screenshots/catalog-2.jpg), dos tramos de la misma página a ~606 px.
    - [x] Detalle — [room-1.jpg](./screenshots/room-1.jpg), [room-2.jpg](./screenshots/room-2.jpg), [room-3.jpg](./screenshots/room-3.jpg) y [room-4.jpg](./screenshots/room-4.jpg), referencias móviles a ~606 px analizadas con Claude.
-   - Estado/fecha: Parcial — 2026-11-23. Las tres vistas tienen referencias a ~606 px; falta evidencia a 375 px.
+   - Estado/fecha: **Pendiente de verificación manual** — 2026-11-23. Las tres vistas tienen referencias de Airbnb a ~606 px aportadas por el usuario, pero no hay capturas de Airbnb a 375 px: hay que hacerlas a mano (DevTools → modo dispositivo a 375 px). El agente no las generó porque son capturas del sitio real de un tercero. Las capturas del clon a 375 px sí existen (`docs/screenshots/impl-*-375.png`).
    - [x] Home: tres tramos de scroll recibidos como referencia visual.
  - [x] 2.2 Adjuntar cada captura al agente y pedir especificación de componentes (nombre, props, relación de layout)
    - Evidencia de Home: capturas y prompt literal en [context.md → Home](../context.md#home).
@@ -52,9 +52,9 @@
    - [x] Detalle — [especificación de Claude](../context.md#detalle--especificación-de-visión) documentada antes de implementar la ficha completa; ya existía una galería provisional.
    - Estado/fecha: Completado — 2026-11-23.
    - [x] Home: componentes, props, estado, layout y adaptación responsive documentados.
- - [ ] 2.4 IMPORTANTE: ninguna librería de componentes preconstruida (ni shadcn, MUI, Ant Design, Chakra)
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 2.4 IMPORTANTE: ninguna librería de componentes preconstruida (ni shadcn, MUI, Ant Design, Chakra)
+   - Evidencia: `grep -rnE "shadcn|@mui|antd|chakra" package.json app components` → vacío. [package.json](../package.json) solo tiene `next`, `react`, `react-dom`, `leaflet`/`react-leaflet` (reto 4.4), `react-day-picker` (reto 5.7) y `date-fns`, utilidad de fechas que no aporta componentes.
+   - Estado/fecha: Completado — 2026-11-23.
 
 ### 3 — Página de inicio (/)
 
@@ -62,10 +62,10 @@
    - Evidencia: [Navbar.tsx](../components/Navbar.tsx) incorpora una marca propia, el buscador y los iconos del menú.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 3.2 Búsqueda con useState: guarda el texto y filtra tarjetas en tiempo real (la lista de tarjetas es estado local, se actualiza en cada pulsación)
-   - Evidencia: [SearchBar.tsx](../components/SearchBar.tsx) actualiza la consulta de [HomeContent.tsx](../components/HomeContent.tsx) en cada pulsación; la vista deriva los resultados del estado local sin duplicarlo.
+   - Evidencia: [SearchBar.tsx](../components/SearchBar.tsx) actualiza la consulta de [HomeContent.tsx](../components/HomeContent.tsx) en cada pulsación; la vista deriva los resultados del estado local sin duplicarlo. Fase 1 (2026-11-23): Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones; «bilbao» → 1 tarjeta y texto sin coincidencias → mensaje vacío.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 3.3 Fila horizontal de filtros por categoría bajo la navbar (icono + etiqueta: Playa, Mansiones, Tendencias, etc.), useState para la categoría activa y resaltarla
-   - Evidencia: [CategoryBar.tsx](../components/CategoryBar.tsx) permite desplazamiento horizontal y [CategoryItem.tsx](../components/CategoryItem.tsx) destaca la selección controlada por [HomeContent.tsx](../components/HomeContent.tsx).
+   - Evidencia: [CategoryBar.tsx](../components/CategoryBar.tsx) permite desplazamiento horizontal y [CategoryItem.tsx](../components/CategoryItem.tsx) destaca la selección controlada por [HomeContent.tsx](../components/HomeContent.tsx). Fase 1 (2026-11-23): Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones; «Playa» → 2 tarjetas con `aria-pressed="true"` y, combinada con «valencia», 1 tarjeta.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 3.4 Cuadrícula responsive de tarjetas: foto placeholder, título, precio por noche y valoración con estrellas
    - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx) muestra una portada ilustrada 4:3 con [PlaceholderPhoto.tsx](../components/PlaceholderPhoto.tsx), conserva título, ubicación, precio y [StarRating.tsx](../components/StarRating.tsx), y añade un corazón decorativo y la etiqueta de recomendación desde 4,9. Los cinco tipos se asignan en [mocks/listings.ts](../mocks/listings.ts); la [galería de detalle](../app/rooms/%5Bid%5D/page.tsx) reutiliza el icono del alojamiento con cinco gradientes distintos.
@@ -80,7 +80,7 @@
 ### 4 — Página de catálogo (/catalog)
 
  - [x] 4.1 Cabecera de resultados: número de resultados y control de orden (Ascendente/Descendente por precio) con useState que reordena las tarjetas
-   - Evidencia: [ResultsHeader.tsx](../components/ResultsHeader.tsx) muestra el recuento y el selector accesible. [CatalogContent.tsx](../components/CatalogContent.tsx) ordena una copia de la lista con `useState`. `/catalog` respondió HTTP 200 en dev; la prueba confirmó el recuento, orden inicial y búsqueda.
+   - Evidencia: [ResultsHeader.tsx](../components/ResultsHeader.tsx) muestra el recuento y el selector accesible. [CatalogContent.tsx](../components/CatalogContent.tsx) ordena una copia de la lista con `useState`. `/catalog` respondió HTTP 200 en dev; la prueba confirmó el recuento, orden inicial y búsqueda. Fase 1 (2026-11-23): Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones; ascendente 60 → 450 y descendente 450 → 60.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 4.2 Reutilizar el componente de tarjeta de la Home
    - Evidencia: [ListingGrid.tsx](../components/ListingGrid.tsx) comparte [ListingCard.tsx](../components/ListingCard.tsx) entre Home y Catálogo, incluida su portada y valoración.
@@ -89,7 +89,7 @@
    - Evidencia: [CatalogContent.tsx](../components/CatalogContent.tsx) coloca el mapa después de la lista en móvil y a la derecha con `sticky` desde `md:`. La respuesta HTTP en dev incluyó [MapPlaceholder.tsx](../components/MapPlaceholder.tsx) con el texto «Mapa».
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 4.4 RETO OPCIONAL: sustituir placeholder por mapa interactivo real (react-leaflet o Google Maps) con cada alojamiento como pin usando sus coordenadas
-   - Evidencia: [MapSection.tsx](../components/MapSection.tsx) carga Leaflet sin SSR. [ListingsMap.tsx](../components/ListingsMap.tsx) muestra pines de precio y teselas de OpenStreetMap con atribución; [FitListingBounds.tsx](../components/FitListingBounds.tsx) encuadra las coordenadas. Chromium verificó 12 pines, un pin al filtrar y la navegación desde el popup sin recargar el documento (teselas simuladas).
+   - Evidencia: [MapSection.tsx](../components/MapSection.tsx) carga Leaflet sin SSR. [ListingsMap.tsx](../components/ListingsMap.tsx) muestra pines de precio y teselas de OpenStreetMap con atribución; [FitListingBounds.tsx](../components/FitListingBounds.tsx) encuadra las coordenadas. Chromium verificó 12 pines, un pin al filtrar y la navegación desde el popup sin recargar el documento (teselas simuladas). Fase 1 (2026-11-23): Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones; 12 pines (uno por alojamiento) en `/catalog`. Se corrigió el centrado del precio en el pin (ERR-013). Capturas: [impl-catalog-375.png](./screenshots/impl-catalog-375.png) e [impl-catalog-1280.png](./screenshots/impl-catalog-1280.png). Las teselas OSM se simularon en la prueba.
    - Estado/fecha: Completado — 2026-11-23.
 
 ### 5 — Página de detalle (/rooms/[id])
@@ -113,7 +113,7 @@
    - Evidencia: [BookingCard.tsx](../components/BookingCard.tsx) controla [GuestCounter.tsx](../components/GuestCounter.tsx). Chromium verificó límites de 1 a 6 y el aviso de que no se realizan reservas reales.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 5.7 RETO OPCIONAL: campos funcionales de fecha entrada/salida con librería de date picker y precio total según noches seleccionadas
-   - Evidencia: [DateRangePicker.tsx](../components/DateRangePicker.tsx) usa `react-day-picker` v9 en español; [BookingCard.tsx](../components/BookingCard.tsx) calcula noches con `differenceInCalendarDays` y actualiza el total. Chromium a 375 px comprobó que las fechas pasadas y el CTA sin rango completo quedan deshabilitados, que 3 noches × 112 € dan 336 € y que no hay desbordamiento horizontal.
+   - Evidencia: [DateRangePicker.tsx](../components/DateRangePicker.tsx) usa `react-day-picker` v9 en español; [BookingCard.tsx](../components/BookingCard.tsx) calcula noches con `differenceInCalendarDays` y actualiza el total. Chromium a 375 px comprobó que las fechas pasadas y el CTA sin rango completo quedan deshabilitados, que 3 noches × 112 € dan 336 € y que no hay desbordamiento horizontal. Fase 1 (2026-11-23): Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones; `Reservar` deshabilitado sin rango, rango 23–26 nov → «3 noches × 112 € · Total: 336 €» y aviso al pulsar. Capturas: [impl-rooms-1-375.png](./screenshots/impl-rooms-1-375.png) e [impl-rooms-1-1280.png](./screenshots/impl-rooms-1-1280.png).
    - Estado/fecha: Completado — 2026-11-23.
 
 ### 6 — Navegación
@@ -122,26 +122,26 @@
    - Evidencia: [ListingCard.tsx](../components/ListingCard.tsx) envuelve la tarjeta en `Link` a `/rooms/[id]`. Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px: el clic en la primera tarjeta de la Home abre su ficha; el enlace «Ver alojamiento» del popup del mapa y las tarjetas del Catálogo usan el mismo componente.
    - Estado/fecha: Completado — verificado en navegador 2026-11-23.
  - [x] 6.2 Usar <Link> de Next.js para toda la navegación entre páginas
-   - Evidencia: `grep -rn "<a " app components --include=*.tsx` → sin resultados; la navegación usa `Link` en [ListingCard.tsx](../components/ListingCard.tsx), [Navbar.tsx](../components/Navbar.tsx), [BottomNav.tsx](../components/BottomNav.tsx), [HomeContent.tsx](../components/HomeContent.tsx), [catalog/page.tsx](../app/catalog/page.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx), [BackToCatalog.tsx](../components/BackToCatalog.tsx) y [RoomNotFound.tsx](../components/RoomNotFound.tsx). La búsqueda del Catálogo es un `<form action="/catalog">` (envío GET), no un enlace.
+   - Evidencia: `grep -rn "<a " app components --include=*.tsx` solo encuentra [ListingsMap.tsx:40](../components/ListingsMap.tsx), un string con el enlace **externo** de atribución de OpenStreetMap que exige su licencia y que Leaflet inserta en el control de atribución. No hay `<a>` de navegación interna. Toda la navegación usa `Link`: [ListingCard.tsx](../components/ListingCard.tsx), [Navbar.tsx](../components/Navbar.tsx), [BottomNav.tsx](../components/BottomNav.tsx), [HomeContent.tsx](../components/HomeContent.tsx), [catalog/page.tsx](../app/catalog/page.tsx), [CatalogContent.tsx](../components/CatalogContent.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx) (popup), [BackToCatalog.tsx](../components/BackToCatalog.tsx) y [RoomNotFound.tsx](../components/RoomNotFound.tsx). La búsqueda del Catálogo es un `<form action="/catalog">` GET, no un enlace.
    - Estado/fecha: Completado — 2026-11-23.
  - [x] 6.3 Botón volver o breadcrumb en el detalle que regrese al Catálogo
    - Evidencia: [BackToCatalog.tsx](../components/BackToCatalog.tsx) (migas Inicio / Catálogo y «← Volver al catálogo»). Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px: el clic en «Volver al catálogo» desde `/rooms/[id]` lleva a `/catalog`. `/rooms/999` muestra [RoomNotFound.tsx](../components/RoomNotFound.tsx) con enlace al Catálogo y HTTP 404 ([impl-rooms-999-375.png](./screenshots/impl-rooms-999-375.png)).
    - Estado/fecha: Completado — verificado en navegador 2026-11-23.
  - [x] 6.4 IMPORTANTE: nunca <a href="..."> plano para navegación interna
-   - Evidencia: Mismo `grep` de 6.2 sin resultados: no hay `<a>` en el código propio. Los únicos `<a>` del DOM los genera Leaflet (controles de zoom y atribución externa a OpenStreetMap).
+   - Evidencia: Ver 6.2: el único `<a>` del código es la atribución externa de OpenStreetMap ([ListingsMap.tsx:40](../components/ListingsMap.tsx)). Los demás `<a>` del DOM los genera Leaflet (zoom y atribución). Ninguno es navegación interna.
    - Estado/fecha: Completado — 2026-11-23.
 
 ### 7 — Calidad de código
 
- - [ ] 7.1 Cada componente en su propio archivo dentro de /components
-   - Evidencia: Parcial: la Home compone archivos individuales de [components/](../components/) desde [app/page.tsx](../app/page.tsx).
-   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
- - [ ] 7.2 Ningún componente supera ~80 líneas de JSX + lógica
-   - Evidencia: Parcial: los componentes de [Home](../components/HomeContent.tsx), incluidos [Navbar.tsx](../components/Navbar.tsx) y [BottomNav.tsx](../components/BottomNav.tsx), no superan 80 líneas.
-   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
- - [ ] 7.3 Todos los componentes funcionales definidos como const; sin clases
-   - Evidencia: Parcial: [page.tsx](../app/page.tsx) y los componentes de la Home en [components/](../components/) usan funciones definidas con `const`.
-   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
+ - [x] 7.1 Cada componente en su propio archivo dentro de /components
+   - Evidencia: 28 archivos en [components/](../components/), cada uno con un solo componente exportado. Comprobado con `grep -cE "^(export )?const [A-Z]" components/*.tsx`. La única segunda coincidencia es [MapSection.tsx](../components/MapSection.tsx), donde `ListingsMap` es la referencia `dynamic()` al componente de su propio archivo, no un segundo componente.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 7.2 Ningún componente supera ~80 líneas de JSX + lógica
+   - Evidencia: `wc -l components/*.tsx | sort -rn`: el mayor es [HomeContent.tsx](../components/HomeContent.tsx) con 67 líneas (imports incluidos), seguido de [ListingsMap.tsx](../components/ListingsMap.tsx) (62) y [Navbar.tsx](../components/Navbar.tsx) (60). Ninguno pasa de ~80, así que no hizo falta dividir nada.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 7.3 Todos los componentes funcionales definidos como const; sin clases
+   - Evidencia: `grep -rnE "^export default function|^function |^export function" components` → vacío; `grep -rnE "extends (React\.)?(Component|PureComponent)|class [A-Z]" app components` → vacío. Las páginas y layouts de [app/](../app/) también usan `const` + `export default`.
+   - Estado/fecha: Completado — 2026-11-23.
 
 ## SECCIÓN B — QUÉ VAMOS A EVALUAR
 
@@ -151,9 +151,9 @@
  - [x] E2 Proyecto configurado con Next.js 16, TypeScript, Tailwind y App Router (sin plantilla de inicio)
    - Evidencia: [package.json](../package.json), [app/page.tsx](../app/page.tsx) y [app/globals.css](../app/globals.css). Página mínima en lugar de la plantilla; `npm run build` y `npm run lint` sin errores.
    - Estado/fecha: Completado — 2026-11-23.
- - [ ] E3 Tres rutas implementadas y navegables: /, /catalog y /rooms/[id]
-   - Evidencia: Parcial: [app/page.tsx](../app/page.tsx) implementa `/` (HTTP 200 en desarrollo). [HomeContent.tsx](../components/HomeContent.tsx) y [ListingCard.tsx](../components/ListingCard.tsx) apuntan a las rutas aún pendientes.
-   - Estado/fecha: Home completada — 2026-11-23; faltan Catálogo y Detalle.
+ - [x] E3 Tres rutas implementadas y navegables: /, /catalog y /rooms/[id]
+   - Evidencia: [app/page.tsx](../app/page.tsx), [app/catalog/page.tsx](../app/catalog/page.tsx) y [app/rooms/[id]/page.tsx](../app/rooms/%5Bid%5D/page.tsx) con su [not-found.tsx](../app/rooms/%5Bid%5D/not-found.tsx). Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones: `/`, `/catalog` y `/rooms/1` cargan; `/rooms/999` devuelve HTTP 404 con «Alojamiento no encontrado». La salida de `npm run build` lista `/`, `/catalog` y `/rooms/[id]`.
+   - Estado/fecha: Completado — verificado en navegador 2026-11-23.
  - [x] E4 Toda la navegación interna usa <Link>, sin recargas completas
    - Evidencia: Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones superadas a 375 y 1280 px. Recorrido Home → detalle (clic en tarjeta) → Catálogo («Volver al catálogo») con `window.__spaMarker` fijado al principio: el marcador persiste tras las dos navegaciones y Playwright no registró ninguna petición de documento nuevo (0), es decir, no hubo recarga completa.
    - Estado/fecha: Completado — verificado en navegador 2026-11-23.
@@ -164,27 +164,50 @@
    - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) y [CatalogContent.tsx](../components/CatalogContent.tsx) usan [ListingGrid.tsx](../components/ListingGrid.tsx), que renderiza el mismo [ListingCard.tsx](../components/ListingCard.tsx).
    - Estado/fecha: Completado — 2026-11-23.
  - [x] E7 useState en al menos tres casos distintos (búsqueda, categoría, orden, huéspedes, índice de galería)
-   - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) usa `useState` para búsqueda y categoría; [CatalogContent.tsx](../components/CatalogContent.tsx), para el orden por precio. Chromium comprobó el cambio de ascendente a descendente.
+   - Evidencia: [HomeContent.tsx](../components/HomeContent.tsx) usa `useState` para búsqueda y categoría; [CatalogContent.tsx](../components/CatalogContent.tsx), para el orden por precio. Chromium comprobó el cambio de ascendente a descendente. 10 `useState` en 5 componentes: búsqueda, categoría, lista y carga ([HomeContent.tsx](../components/HomeContent.tsx)); orden ([CatalogContent.tsx](../components/CatalogContent.tsx)); habitación ([RoomDetail.tsx](../components/RoomDetail.tsx)); índice de galería ([PhotoGallery.tsx](../components/PhotoGallery.tsx)); huéspedes, rango y aviso ([BookingCard.tsx](../components/BookingCard.tsx)).
    - Estado/fecha: Completado — 2026-11-23.
- - [ ] E8 useEffect para simular carga en al menos dos páginas, con estado de carga visible
-   - Evidencia: Parcial: [HomeContent.tsx](../components/HomeContent.tsx) y [LoadingSpinner.tsx](../components/LoadingSpinner.tsx) cubren la carga de Home; falta la de Detalle.
-   - Estado/fecha: Parcial — 2026-11-23.
- - [ ] E9 Detalle con las cinco secciones: galería con navegación, cabecera, anfitrión, amenities, tarjeta de reserva
-   - Evidencia:
-   - Estado/fecha:
- - [ ] E10 Componentes en archivos individuales, una única responsabilidad cada uno
-   - Evidencia:
-   - Estado/fecha:
- - [ ] E11 Sin componentes de clase; todos funcionales con const
-   - Evidencia:
-   - Estado/fecha:
+ - [x] E8 useEffect para simular carga en al menos dos páginas, con estado de carga visible
+   - Evidencia: `useEffect` + `setTimeout(…, 1000)` con limpieza en [HomeContent.tsx:20](../components/HomeContent.tsx) y [RoomDetail.tsx:19](../components/RoomDetail.tsx); ambos muestran [LoadingSpinner.tsx](../components/LoadingSpinner.tsx) («Cargando alojamientos…», `role="status"`). Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones: spinner visible al montar en `/` y `/rooms/1`; desaparece cuando llegan los datos.
+   - Estado/fecha: Completado — verificado en navegador 2026-11-23.
+ - [x] E9 Detalle con las cinco secciones: galería con navegación, cabecera, anfitrión, amenities, tarjeta de reserva
+   - Evidencia: [RoomDetail.tsx](../components/RoomDetail.tsx) compone [PhotoGallery.tsx](../components/PhotoGallery.tsx), [RoomHeader.tsx](../components/RoomHeader.tsx), [HostInfo.tsx](../components/HostInfo.tsx), [AmenitiesGrid.tsx](../components/AmenitiesGrid.tsx) y [BookingCard.tsx](../components/BookingCard.tsx). Playwright (Chromium) a 375 y 1280 px, 48/48 comprobaciones: galería cíclica 1/5 → 5/5 → 1/5, huéspedes 1–6 con botones deshabilitados en los límites, 3 noches × 112 € = 336 €. Capturas: [impl-rooms-1-375.png](./screenshots/impl-rooms-1-375.png) e [impl-rooms-1-1280.png](./screenshots/impl-rooms-1-1280.png).
+   - Estado/fecha: Completado — verificado en navegador 2026-11-23.
+ - [x] E10 Componentes en archivos individuales, una única responsabilidad cada uno
+   - Evidencia: Ver 7.1: 28 archivos con un componente cada uno. Responsabilidades separadas: por ejemplo, [MapSection.tsx](../components/MapSection.tsx) solo hace la carga sin SSR, [ListingsMap.tsx](../components/ListingsMap.tsx) pinta el mapa y [FitListingBounds.tsx](../components/FitListingBounds.tsx) ajusta el encuadre; [GuestCounter.tsx](../components/GuestCounter.tsx) y [DateRangePicker.tsx](../components/DateRangePicker.tsx) están separados de [BookingCard.tsx](../components/BookingCard.tsx).
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] E11 Sin componentes de clase; todos funcionales con const
+   - Evidencia: Ver 7.3: no hay componentes de clase ni declaraciones `function` en [components/](../components/) ni en [app/](../app/).
+   - Estado/fecha: Completado — 2026-11-23.
  - [x] E12 Tipos/interfaces TS para estructuras principales (alojamiento, habitación)
    - Evidencia: [types/listing.ts](../types/listing.ts) exporta `Listing`, `Room` (extiende `Listing`), `Host` y `Category`.
    - Estado/fecha: Completado — 2026-11-23.
- - [ ] E13 Clases de utilidad Tailwind para todos los estilos, sin style={{}} en línea
-   - Evidencia:
-   - Estado/fecha:
+ - [x] E13 Clases de utilidad Tailwind para todos los estilos, sin style={{}} en línea
+   - Evidencia: `grep -rnE "style=\{\{" app components` → vacío. [app/globals.css](../app/globals.css) solo contiene `@import "tailwindcss";`. Las únicas hojas externas son `leaflet.css` y `react-day-picker/style.css`, que exigen las librerías permitidas de los retos. El calendario se personaliza con variables CSS mediante clases arbitrarias de Tailwind en [DateRangePicker.tsx](../components/DateRangePicker.tsx).
+   - Estado/fecha: Completado — 2026-11-23.
  - [x] E14 Flujo visión→especificación visible: especificaciones documentadas en context.md o en comentarios del código
    - Evidencia: [sección 6 de context.md](../context.md#6-especificaciones-derivadas-de-visión). Detalle conserva la especificación, las capturas de referencia y el prompt de Claude, usado porque el chat de Copilot de este Codespace no permite adjuntar imágenes.
    - Estado/fecha: Completado — 2026-11-23.
  - Nota: los retos opcionales (mapa real, date picker funcional) no son evaluación base, pero en ESTE proyecto SÍ los vamos a hacer (4.4 y 5.7).
+
+## Resumen de la auditoría final (2026-11-23)
+
+Comandos: `npm run lint` sin errores ni avisos; `npm run build` compila `/`, `/catalog` y `/rooms/[id]`. Verificación en navegador: Playwright 1.56.1 (Chromium) contra `npm run dev`, 48/48 comprobaciones a 375 y 1280 px.
+
+| Tarea | Estado | Evidencia |
+| --- | --- | --- |
+| 0 — context.md | Completado | [context.md](../context.md) |
+| 1 — Configuración | Completado | [package.json](../package.json), [app/](../app/) |
+| 2 — Flujo de visión | Completado salvo 2.1 | [context.md §6](../context.md#6-especificaciones-derivadas-de-visión); 2.1 pendiente (capturas de Airbnb a 375 px) |
+| 3 — Home | Completado | [HomeContent.tsx](../components/HomeContent.tsx), [impl-home-375.png](./screenshots/impl-home-375.png), [impl-home-1280.png](./screenshots/impl-home-1280.png) |
+| 4 — Catálogo (+ reto 4.4) | Completado | [CatalogContent.tsx](../components/CatalogContent.tsx), [ListingsMap.tsx](../components/ListingsMap.tsx), [impl-catalog-375.png](./screenshots/impl-catalog-375.png), [impl-catalog-1280.png](./screenshots/impl-catalog-1280.png) |
+| 5 — Detalle (+ reto 5.7) | Completado | [RoomDetail.tsx](../components/RoomDetail.tsx), [BookingCard.tsx](../components/BookingCard.tsx), [impl-rooms-1-375.png](./screenshots/impl-rooms-1-375.png), [impl-rooms-999-375.png](./screenshots/impl-rooms-999-375.png) |
+| 6 — Navegación | Completado | `Link` en todos los enlaces internos; navegación sin recarga (marcador en `window`, 0 documentos nuevos) |
+| 7 — Calidad de código | Completado | Máximo 67 líneas por componente; todo `const`; sin clases ni `style={{}}` |
+| E1–E14 | Completado | Ver cada ítem arriba |
+
+### Pendiente de verificación manual
+
+- **2.1** — Capturas de Airbnb a 375 px: solo hay referencias a ~606 px. Hacerlas en DevTools (modo dispositivo, 375 px) y guardarlas en `docs/screenshots/`.
+- **Teselas reales del mapa** — en la prueba automática se simularon las teselas de OpenStreetMap para no depender de la red; conviene abrir `/catalog` en un navegador con conexión y confirmar que se ve el mapa base.
+- **Dispositivo físico** — la verificación se hizo en Chromium con viewport de 375 px, no en un móvil real (Safari iOS: área segura, teclado virtual sobre el buscador).
+
