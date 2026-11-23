@@ -4,18 +4,18 @@
 
 ### 0 — Antes de escribir código
 
- - [ ] 0.1 Crear `context.md` en la raíz del proyecto
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 0.2 context.md: descripción de las tres páginas y qué muestra cada una
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 0.3 context.md: listado de los componentes principales de cada vista (Airbnb.com como referencia)
-   - Evidencia:
-   - Estado/fecha:
- - [ ] 0.4 context.md: párrafo corto que describa al usuario y qué intenta conseguir en la plataforma
-   - Evidencia:
-   - Estado/fecha:
+ - [x] 0.1 Crear `context.md` en la raíz del proyecto
+   - Evidencia: [context.md](../context.md), en la raíz.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 0.2 context.md: descripción de las tres páginas y qué muestra cada una
+   - Evidencia: [context.md](../context.md), sección 2 «Las tres páginas».
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 0.3 context.md: listado de los componentes principales de cada vista (Airbnb.com como referencia)
+   - Evidencia: [context.md](../context.md), sección 3 «Componentes principales por vista». El inventario inicial queda pendiente de contraste con las capturas.
+   - Estado/fecha: Completado — 2026-11-23.
+ - [x] 0.4 context.md: párrafo corto que describa al usuario y qué intenta conseguir en la plataforma
+   - Evidencia: [context.md](../context.md), sección 1 «Usuario y objetivo».
+   - Estado/fecha: Completado — 2026-11-23.
 
 ### 1 — Configuración del proyecto
 
@@ -136,9 +136,9 @@
 
 ## SECCIÓN B — QUÉ VAMOS A EVALUAR
 
- - [ ] E1 Existe `context.md` en la raíz con descripción clara de interfaz, componentes y usuario
-   - Evidencia:
-   - Estado/fecha:
+ - [x] E1 Existe `context.md` en la raíz con descripción clara de interfaz, componentes y usuario
+   - Evidencia: [context.md](../context.md), secciones 1 a 3.
+   - Estado/fecha: Completado — 2026-11-23.
  - [ ] E2 Proyecto configurado con Next.js 16, TypeScript, Tailwind y App Router (sin plantilla de inicio)
    - Evidencia:
    - Estado/fecha:
