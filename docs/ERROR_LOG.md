@@ -152,3 +152,12 @@ Copia la plantilla y crea una entrada con un número consecutivo (`ERR-001`, `ER
 - Archivos afectados: Ninguno del repositorio; script temporal de Playwright.
 - Cómo evitarlo en el futuro: Sacar el nombre accesible real de los botones del banner (con el mensaje de error o `getByRole`) antes de automatizar el cierre.
 - Estado: Resuelto.
+
+### ERR-016 — Límite de peticiones de la API de Wikimedia Commons
+- Fecha / Prompt o fase: 2026-11-23 / Fotos reales, fase 1 (Claude Code).
+- Síntoma (mensaje exacto o descripción): `urllib.error.HTTPError: HTTP Error 429: Too Many Requests` en la décima búsqueda seguida contra `commons.wikimedia.org/w/api.php`. Antes, la búsqueda pública de Unsplash (`unsplash.com/napi/search/photos`) respondió `307`, que parece un control anti-bots, y se descartó sin intentar esquivarlo.
+- Causa raíz: Diez consultas `generator=search` con `extmetadata` lanzadas sin pausa superaron el límite de peticiones de la API.
+- Solución aplicada (comandos/cambios): Reutilizar las candidatas ya obtenidas. Pedir los metadatos en una sola consulta por títulos (`titles=A|B|…`), con pausa y reintentos con espera creciente, y descargar las miniaturas de una en una con una pausa entre descargas.
+- Archivos afectados: Ninguno del repositorio; scripts temporales.
+- Cómo evitarlo en el futuro: Agrupar consultas a la API de MediaWiki (hasta 50 títulos por petición) y espaciar las peticiones.
+- Estado: Resuelto.
